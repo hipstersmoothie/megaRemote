@@ -1,0 +1,12 @@
+.TopRow > *,
+.MiddleRow > *,
+.BottomRow > * {
+  display: inline;
+}
+
+
+.Controller {
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px;
+}

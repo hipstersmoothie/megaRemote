@@ -1,5 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
+
+import './Controller.css';
 import APIButton from './../Components/APIButton';
 
 function prepare(control) {
@@ -17,8 +19,12 @@ export default function VolumeControls(props) {
   const down = _.find(controls, _.partial(getControl, 'Down'));
   const mute = _.find(controls, _.partial(getControl, 'Mute'));
 
+  if (!up && !down && !mute) {
+    return null;
+  }
+
   return (
-    <div className="Volume-Controller">
+    <div className="Controller">
       <h4>Volume</h4>
 
       {up && (
