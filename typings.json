@@ -1,0 +1,6 @@
+{
+  "globalDependencies": {
+    "lodash": "registry:dt/lodash#4.14.0+20161110215204",
+    "superagent": "registry:dt/superagent#2.0.0+20160906143408"
+  }
+}

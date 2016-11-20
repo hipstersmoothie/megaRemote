@@ -1,0 +1,8 @@
+.Activities-list {
+  display: flex;
+  width: 100%;
+}
+
+.Activity {
+  flex: 1;
+}
