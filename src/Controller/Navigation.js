@@ -15,14 +15,16 @@ function getControl(type, control) {
 
 export default function VolumeControls(props) {
   const controls = _.filter(props.controls, control => control.includes('NavigationBasic') || control.includes('Direction') || control.includes('Enter') || control.includes('Select') || control.includes('Return'));
+
+  if (!controls.length) {
+    return null;
+  }
+
   const up = _.find(controls, _.partial(getControl, 'Up'));
   const down = _.find(controls, _.partial(getControl, 'Down'));
   const left = _.find(controls, _.partial(getControl, 'Left'));
   const right = _.find(controls, _.partial(getControl, 'Right'));
   const select = _.find(controls, _.partial(getControl, 'Select')) || _.find(controls, _.partial(getControl, 'Enter')) || _.find(controls, _.partial(getControl, 'Return'));
-  // if (!up && !down && !mute) {
-  //   return null;
-  // }
 
   return (
     <div className="Controller">

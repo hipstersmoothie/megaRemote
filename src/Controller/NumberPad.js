@@ -13,8 +13,13 @@ function getControl(type, control) {
   return command.indexOf(type) > -1;
 }
 
-export default function VolumeControls(props) {
+export default function NumberPad(props) {
   const controls = _.filter(props.controls, control => control.includes('NumericBasic') || !isNaN(parseInt(control, 10)));
+
+  if (!controls.length) {
+    return null;
+  }
+
   const zero = _.find(controls, _.partial(getControl, '0'));
   const one = _.find(controls, _.partial(getControl, '1'));
   const two = _.find(controls, _.partial(getControl, '2'));
@@ -25,10 +30,6 @@ export default function VolumeControls(props) {
   const seven = _.find(controls, _.partial(getControl, '7'));
   const eight = _.find(controls, _.partial(getControl, '8'));
   const nine = _.find(controls, _.partial(getControl, '9'));
-
-  if (!one && !two && !three && !four && !five && !six && !seven && !eight && !nine && !zero) {
-    return null;
-  }
 
   return (
     <div className="Controller">
@@ -142,7 +143,7 @@ export default function VolumeControls(props) {
   );
 }
 
-VolumeControls.propTypes = {
+NumberPad.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
   device: React.PropTypes.string

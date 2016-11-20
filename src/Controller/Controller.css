@@ -4,9 +4,45 @@
   display: inline;
 }
 
-
 .Controller {
   display: inline-block;
   vertical-align: top;
   padding: 10px;
+}
+
+.List {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 305px;
+}
+
+.Other-List {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 805px;
+}
+
+.Other-List > .Device {
+  flex-basis: 200px;
+}
+
+.Other-List > .Device > button, 
+.Input-button {
+   width: 100%;
+}
+
+.Input,
+.Output {
+  flex-basis: 100px;
+}
+
+.Output-button {
+  background: darkred;
+}
+
+.Output-button:hover {
+  color: darkred; 
+  border: 1px solid darkred;
 }

@@ -13,15 +13,16 @@ function getControl(type, control) {
   return command.indexOf(type) > -1;
 }
 
-export default function VolumeControls(props) {
+export default function Volume(props) {
   const controls = _.filter(props.controls, control => control.includes('Volume') || control.includes('Mute'));
+
+  if (!controls.length) {
+    return null;
+  }
+
   const up = _.find(controls, _.partial(getControl, 'Up'));
   const down = _.find(controls, _.partial(getControl, 'Down'));
   const mute = _.find(controls, _.partial(getControl, 'Mute'));
-
-  if (!up && !down && !mute) {
-    return null;
-  }
 
   return (
     <div className="Controller">
@@ -60,7 +61,7 @@ export default function VolumeControls(props) {
   );
 }
 
-VolumeControls.propTypes = {
+Volume.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
   device: React.PropTypes.string
