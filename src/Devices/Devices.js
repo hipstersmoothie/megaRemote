@@ -45,7 +45,7 @@ class Devices extends Component {
 
         <div className="Devices-list">
           {this.state.devices.map(device =>
-            <Device device={device} onClick={this.onClick.bind(this)} key={device} />
+            <Device device={device} onClick={this.onClick.bind(this)} key={device} current={this.state.current} />
           )}
         </div>
 

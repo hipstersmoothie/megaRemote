@@ -8,24 +8,16 @@
   flex-wrap: wrap;
 }
 
-.Device {
+.Device,
+.SelectedDevice {
   flex: 100px;
 }
 
-button {
-  -webkit-transition-duration: 0.4s; 
-  transition-duration: 0.4s;
-  background-color: #008CBA;
-  padding: 15px;
-  border-radius: 5px;
-  border-width: 1px; 
-  color: white;
-  border-color: white;
+.SelectedDevice-button {
+  background: darkorange;
 }
 
-
-button:hover {
-  background-color: white; 
-  color: #008CBA; 
-  border: 1px solid #008CBA;
+.SelectedDevice-button:hover {
+  color: darkorange; 
+  border: 1px solid darkorange;
 }

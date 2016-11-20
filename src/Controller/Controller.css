@@ -29,12 +29,15 @@
 }
 
 .Other-List > .Device > button, 
-.Input-button {
+.Input-button,
+.Output-button,
+.Mode-button {
    width: 100%;
 }
 
 .Input,
-.Output {
+.Output,
+.Mode {
   flex-basis: 100px;
 }
 

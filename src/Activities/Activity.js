@@ -2,11 +2,18 @@ import React from 'react';
 import APIButton from './../Components/APIButton';
 
 function Activity(props) {
-  return <APIButton type="Activities" className="Activity" command={props.activity} {...props} />;
+  let className = 'Activity';
+
+  if (props.activity === props.current) {
+    className = 'SelectedActivity';
+  }
+
+  return <APIButton type="Activities" className={className} command={props.activity} {...props} />;
 }
 
 Activity.propTypes = {
-  activity: React.PropTypes.string
+  activity: React.PropTypes.string,
+  current: React.PropTypes.string
 };
 
 export default Activity;

@@ -9,12 +9,13 @@ function prepare(control) {
 }
 
 function pretty(control) {
-  return control.replace('Input', '');
+  return control.replace('Input', '').replace('HdmiOut', '');
 }
 
 export default function InputOutput(props) {
   const inputs = _.filter(props.controls, control => control.includes('Input') || control.includes('Source'));
   const outputs = _.filter(props.controls, control => control.includes('HdmiOut'));
+  const mode = _.filter(props.controls, control => control.includes('Mode'));
 
   if (!inputs.length) {
     return null;
@@ -42,6 +43,16 @@ export default function InputOutput(props) {
             command={prepare(control)}
             text={pretty(control)}
             className="Output"
+          />
+        )}
+
+        {_.map(mode, control =>
+          <APIButton
+            type={props.type}
+            target={props.device}
+            command={prepare(control)}
+            text={pretty(control)}
+            className="Mode"
           />
         )}
       </div>

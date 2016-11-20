@@ -45,7 +45,7 @@ class Activities extends Component {
 
         <div className="Activities-list">
           {this.state.activities.map(activity =>
-            <Activity activity={activity} onClick={this.onClick.bind(this)} key={activity} />
+            <Activity activity={activity} onClick={this.onClick.bind(this)} key={activity} current={this.state.current} />
           )}
         </div>
 

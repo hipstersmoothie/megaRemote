@@ -3,6 +3,16 @@
   width: 100%;
 }
 
-.Activity {
+.Activity,
+.SelectedActivity {
   flex: 1;
+}
+
+.SelectedActivity-button {
+  background: darkorange;
+}
+
+.SelectedActivity-button:hover {
+  color: darkorange; 
+  border: 1px solid darkorange;
 }
