@@ -3,7 +3,7 @@ import React from 'react';
 import './App.css';
 import Activities from './../Activities/Activities';
 import Devices from './../Devices/Devices';
-import MegaPowerOff from './../Components/MegaPowerOff';
+import MegaSwitcher from './../Components/MegaSwitcher';
 
 function App() {
   return (
@@ -11,7 +11,8 @@ function App() {
       <div className="App-header">
         <h2>Geek Haus Enterainment Control</h2>
       </div>
-      <MegaPowerOff />
+
+      <MegaSwitcher />
       <Activities />
       <Devices />
     </div>

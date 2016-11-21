@@ -1,0 +1,46 @@
+.MegaSwitcher {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.MegaSwitcher > * {
+  flex: 1;
+  padding: 10px;
+}
+
+.MegaSwitcher button {
+  padding: 15px;
+  width: 50%;
+}
+
+.MegaSwitcher-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.MegaSwitcher-section > select,
+.MegaSwitcher-section > .TurnOnSecondTv {
+  margin-bottom: 10px;
+}
+/*.MegaSwitcher > h5 {
+  margin-bottom: 10px;
+}
+
+.MegaSwitcher select {
+  margin-bottom: 10px;
+}*/
+
+blockquote {
+  padding: 0 1em;
+  color: #777;
+  border-left: 0.25em solid #ddd;
+  text-align: left;
+}
+
+.TurnOnSecondTv {
+  text-align: left;
+}
+
+.TurnOnSecondTv label {
+  padding-left: 5px;
+}

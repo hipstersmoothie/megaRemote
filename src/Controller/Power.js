@@ -23,6 +23,7 @@ export default function Power(props) {
   const on = _.find(controls, _.partial(getControl, 'On'));
   const off = _.find(controls, _.partial(getControl, 'Off'));
   const toggle = _.find(controls, _.partial(getControl, 'Toggle'));
+  const source = _.find(controls, _.partial(getControl, 'Source'));
 
   return (
     <div className="Controller">
@@ -55,6 +56,16 @@ export default function Power(props) {
           command={prepare(toggle)}
           text="🌗"
           className="PowerToggle"
+        />
+      )}
+
+      {source && (
+        <APIButton
+          type={props.type}
+          target={props.device}
+          command={prepare(source)}
+          text="S🌗"
+          className="PowerToggleSource"
         />
       )}
     </div>

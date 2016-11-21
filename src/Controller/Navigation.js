@@ -30,6 +30,7 @@ export default function Navigation(props) {
             target={props.device}
             command={prepare(control)}
             className="Navigation"
+            key={control}
           />
         )}
       </div>
@@ -39,6 +40,6 @@ export default function Navigation(props) {
 
 Navigation.propTypes = {
   controls: React.PropTypes.array,
-  type: React.PropTypes.string,
+  type: React.PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   device: React.PropTypes.string
 };

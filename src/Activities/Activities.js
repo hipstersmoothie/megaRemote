@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import request from 'superagent';
+import _ from 'lodash';
 
 import './Activities.css';
 import Activity from './Activity';
@@ -44,9 +45,11 @@ class Activities extends Component {
         </h1>
 
         <div className="Activities-list">
-          {this.state.activities.map(activity =>
-            <Activity activity={activity} onClick={this.onClick.bind(this)} key={activity} current={this.state.current} />
-          )}
+          {_.chain(this.state.activities)
+            .filter(activity => activity !== 'PowerOff')
+            .map(activity => <Activity activity={activity} onClick={this.onClick.bind(this)} key={activity} current={this.state.current} />)
+            .value()
+          }
         </div>
 
         {this.state.activityControls}

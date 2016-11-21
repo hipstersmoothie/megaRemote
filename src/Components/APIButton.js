@@ -17,10 +17,12 @@ class APIButton extends Component {
   }
 
   render() {
+    const text = this.props.command.indexOf(',') > -1 ? this.props.command.split(',')[1] : this.props.command;
+
     return (
       <div className={this.props.className}>
         <button onClick={this.onClick.bind(this)} className={`${this.props.className}-button`}>
-          {this.props.text || this.props.command}
+          {this.props.text || text}
         </button>
       </div>
     );

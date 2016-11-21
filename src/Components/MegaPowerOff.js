@@ -1,22 +1,16 @@
-import React, { Component } from 'react';
-import request from 'superagent';
+import React from 'react';
+import command from './../command';
 
-class Device extends Component {
-  onClick() {
-    request
-      .post('http://localhost:5000/allOff')
-      .end((err, res) => {
-        console.log(err, res);
-      });
-  }
-
-  render() {
-    return (
-      <button onClick={this.onClick.bind(this)}>
-        All Off
-      </button>
-    );
-  }
+function MegaPowerOff() {
+  return (
+    <button className="Output-button" onClick={() => command(`http://localhost:5000/allOff/${this.props.secondary}`)}>
+      All Off
+    </button>
+  );
 }
 
-export default Device;
+MegaPowerOff.propTypes = {
+  secondary: React.PropTypes.bool // eslint-disable-line
+};
+
+export default MegaPowerOff;

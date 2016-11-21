@@ -13,7 +13,7 @@ function pretty(control) {
 }
 
 export default function InputOutput(props) {
-  const inputs = _.filter(props.controls, control => control.includes('Input') || control.includes('Source'));
+  const inputs = _.filter(props.controls, control => control.includes('Input') || (control.includes('Source') && !control.includes('Source Power')));
   const outputs = _.filter(props.controls, control => control.includes('HdmiOut'));
   const mode = _.filter(props.controls, control => control.includes('Mode'));
 
@@ -33,6 +33,7 @@ export default function InputOutput(props) {
             command={prepare(control)}
             text={pretty(control)}
             className="Input"
+            key={control}
           />
         )}
 
@@ -43,6 +44,7 @@ export default function InputOutput(props) {
             command={prepare(control)}
             text={pretty(control)}
             className="Output"
+            key={control}
           />
         )}
 
@@ -53,6 +55,7 @@ export default function InputOutput(props) {
             command={prepare(control)}
             text={pretty(control)}
             className="Mode"
+            key={control}
           />
         )}
       </div>
@@ -62,6 +65,6 @@ export default function InputOutput(props) {
 
 InputOutput.propTypes = {
   controls: React.PropTypes.array,
-  type: React.PropTypes.string,
+  type: React.PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   device: React.PropTypes.string
 };

@@ -13,6 +13,7 @@ import Power from './Power';
 import Navigation from './Navigation';
 
 function Controller(props) {
+  console.log(props)
   return (
     <div className="Controller">
       <Power controls={props.controls} {...props} />
@@ -24,7 +25,7 @@ function Controller(props) {
       <InputOutput controls={props.controls} {...props} />
       <Navigation controls={props.controls} {...props} />
 
-      <h3>Other</h3>
+      <h4>Other</h4>
       <div className="Other-List">
         {_.chain(props.controls)
           .filter(control => !control.includes('Volume') && !control.includes('Mute'))
