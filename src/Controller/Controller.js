@@ -13,7 +13,6 @@ import Power from './Power';
 import Navigation from './Navigation';
 
 function Controller(props) {
-  console.log(props)
   return (
     <div className="Controller">
       <Power controls={props.controls} {...props} />
@@ -22,8 +21,9 @@ function Controller(props) {
       <NumberPad controls={props.controls} {...props} />
       <Select controls={props.controls} {...props} />
       <Media controls={props.controls} {...props} />
-      <InputOutput controls={props.controls} {...props} />
       <Navigation controls={props.controls} {...props} />
+      
+      <InputOutput controls={props.controls} {...props} />
 
       <h4>Other</h4>
       <div className="Other-List">
@@ -41,7 +41,7 @@ function Controller(props) {
           .map((control) => {
             const command = control.join ? control.join(',') : control;
 
-            return <APIButton type={props.type} target={props.device} command={command} className="Device" key={control} />;
+            return <APIButton type={props.type} target={props.device} command={command} className="Device" key={control} buttonType="primary" />;
           })
           .value()
         }

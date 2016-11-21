@@ -3,15 +3,7 @@ import _ from 'lodash';
 
 import './Controller.css';
 import APIButton from './../Components/APIButton';
-
-function prepare(control) {
-  return control.join ? control.join(',') : control;
-}
-
-function getControl(type, control) {
-  const command = prepare(control);
-  return command.indexOf(type) > -1;
-}
+import { prepare, getControl } from './helpers';
 
 export default function Channel(props) {
   const controls = _.filter(props.controls, control => control.includes('Channel'));
@@ -22,6 +14,11 @@ export default function Channel(props) {
 
   const up = _.find(controls, _.partial(getControl, 'Up'));
   const down = _.find(controls, _.partial(getControl, 'Down'));
+  const defaults = _.extend({}, {
+    type: props.type,
+    device: props.device,
+    buttonType: 'primary'
+  });
 
   return (
     <div className="Controller">
@@ -29,8 +26,7 @@ export default function Channel(props) {
 
       {up && (
         <APIButton
-          type={props.type}
-          target={props.device}
+          {...defaults}
           command={prepare(up)}
           text="▲"
           className="ChannelUp"
@@ -39,8 +35,7 @@ export default function Channel(props) {
 
       {down && (
         <APIButton
-          type={props.type}
-          target={props.device}
+          {...defaults}
           command={prepare(down)}
           text="▼"
           className="ChannelDown"

@@ -3,6 +3,12 @@
   padding-bottom: 20px;
 }
 
+@media (max-width: 700px) {
+  .MegaSwitcher {
+    flex-direction: column;
+  }
+}
+
 .MegaSwitcher > * {
   flex: 1;
   padding: 10px;
@@ -22,13 +28,6 @@
 .MegaSwitcher-section > .TurnOnSecondTv {
   margin-bottom: 10px;
 }
-/*.MegaSwitcher > h5 {
-  margin-bottom: 10px;
-}
-
-.MegaSwitcher select {
-  margin-bottom: 10px;
-}*/
 
 blockquote {
   padding: 0 1em;

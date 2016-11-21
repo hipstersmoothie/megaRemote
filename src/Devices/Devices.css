@@ -1,23 +1,29 @@
 .Devices-list {
   display: flex;
   width: 100%;
-}
-
-.Device-list {
-  display: flex;
   flex-wrap: wrap;
 }
 
-.Device,
-.SelectedDevice {
-  flex: 100px;
+.Device {
+  flex: 200px;
+  margin: 0 5px 5px 0;
 }
 
-.SelectedDevice-button {
-  background: darkorange;
+.Device > * {
+  width: 100%;
 }
 
-.SelectedDevice-button:hover {
-  color: darkorange; 
-  border: 1px solid darkorange;
+@media (max-width: 700px) {
+  .Device {
+    flex: 1;
+  }
+
+  .Devices-list {
+    flex-direction: column;
+  }
+
+  .Devices-list .Device-button {
+    width: 80%;
+    margin-bottom: 10px;
+  }
 }

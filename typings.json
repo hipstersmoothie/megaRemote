@@ -1,6 +1,7 @@
 {
   "globalDependencies": {
     "lodash": "registry:dt/lodash#4.14.0+20161110215204",
+    "material-ui": "registry:dt/material-ui#0.16.0+20161019174653",
     "superagent": "registry:dt/superagent#2.0.0+20160906143408"
   }
 }

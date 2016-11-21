@@ -3,15 +3,7 @@ import _ from 'lodash';
 
 import './Controller.css';
 import APIButton from './../Components/APIButton';
-
-function prepare(control) {
-  return control.join ? control.join(',') : control;
-}
-
-function getControl(type, control) {
-  const command = prepare(control);
-  return command.indexOf(type) > -1;
-}
+import { prepare, getControl } from './helpers';
 
 export default function Volume(props) {
   const controls = _.filter(props.controls, control => control.includes('Volume') || control.includes('Mute'));
@@ -30,6 +22,7 @@ export default function Volume(props) {
 
       {up && (
         <APIButton
+          buttonType="primary"
           type={props.type}
           target={props.device}
           command={prepare(up)}
@@ -40,6 +33,7 @@ export default function Volume(props) {
 
       {down && (
         <APIButton
+          buttonType="primary"
           type={props.type}
           target={props.device}
           command={prepare(down)}
@@ -50,6 +44,7 @@ export default function Volume(props) {
 
       {mute && (
         <APIButton
+          buttonType="primary"
           type={props.type}
           target={props.device}
           command={prepare(mute)}

@@ -4,10 +4,20 @@
   display: inline;
 }
 
+.TopRow > * > *,
+.MiddleRow > * > *,
+.BottomRow > * > * {
+  margin: 0 5px 5px 0;
+}
+
 .Controller {
   display: inline-block;
   vertical-align: top;
   padding: 10px;
+}
+
+.Controller > div:not(.TopRow):not(.MiddleRow):not(.BottomRow) {
+  margin-bottom: 5px; 
 }
 
 .List {
@@ -25,11 +35,7 @@
   margin: auto;
 }
 
-.Other-List > .Device {
-  flex-basis: 200px;
-}
-
-.Other-List > .Device > button, 
+.Other-List > .Device > .Device-button, 
 .Input-button,
 .Output-button,
 .Mode-button {
@@ -39,14 +45,12 @@
 .Input,
 .Output,
 .Mode {
-  flex-basis: 100px;
+  flex-basis: 145px;
+  margin: 0 5px 5px 0;
 }
 
-.Output-button {
-  background: darkred;
-}
-
-.Output-button:hover {
-  color: darkred; 
-  border: 1px solid darkred;
+.Other-List  .Device,
+.Navigation {
+  flex-basis: 1;
+  margin: 0 5px 5px 0;
 }

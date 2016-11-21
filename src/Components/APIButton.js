@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import request from 'superagent';
+import RaisedButton from 'material-ui/RaisedButton';
+import command from './../command';
 
 class APIButton extends Component {
   onClick() {
@@ -8,11 +9,7 @@ class APIButton extends Component {
     }
 
     if (this.props.type) {
-      request
-        .post(`http://localhost:5000/${this.props.type}${this.props.target ? `/${this.props.target}` : ''}/${this.props.command}`)
-        .end((err, res) => {
-          console.log(err, res);
-        });
+      command(`http://localhost:5000/${this.props.type}${this.props.target ? `/${this.props.target}` : ''}/${this.props.command}`);
     }
   }
 
@@ -21,9 +18,13 @@ class APIButton extends Component {
 
     return (
       <div className={this.props.className}>
-        <button onClick={this.onClick.bind(this)} className={`${this.props.className}-button`}>
-          {this.props.text || text}
-        </button>
+        <RaisedButton
+          primary={this.props.buttonType === 'primary'}
+          secondary={this.props.buttonType === 'secondary'}
+          onClick={this.onClick.bind(this)}
+          className={`${this.props.className}-button`}
+          label={this.props.text || text}
+        />
       </div>
     );
   }

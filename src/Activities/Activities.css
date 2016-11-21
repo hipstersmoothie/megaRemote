@@ -3,16 +3,17 @@
   width: 100%;
 }
 
-.Activity,
-.SelectedActivity {
+@media (max-width: 700px) {
+  .Activities-list {
+    flex-direction: column;
+  }
+
+  .Activities-list .Activity-button {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}
+
+.Activity {
   flex: 1;
-}
-
-.SelectedActivity-button {
-  background: darkorange;
-}
-
-.SelectedActivity-button:hover {
-  color: darkorange; 
-  border: 1px solid darkorange;
 }

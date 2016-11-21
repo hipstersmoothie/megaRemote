@@ -3,15 +3,7 @@ import _ from 'lodash';
 
 import './Controller.css';
 import APIButton from './../Components/APIButton';
-
-function prepare(control) {
-  return control.join ? control.join(',') : control;
-}
-
-function getControl(type, control) {
-  const command = prepare(control);
-  return command.indexOf(type) > -1;
-}
+import { prepare, getControl } from './helpers';
 
 export default function Select(props) {
   const controls = _.filter(props.controls, control => control.includes('NavigationBasic') || control.includes('Direction') || control.includes('Enter') || control.includes('Select') || control.includes('OK'));
@@ -33,6 +25,7 @@ export default function Select(props) {
       <div className="TopRow">
         {up && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(up)}
@@ -45,6 +38,7 @@ export default function Select(props) {
       <div className="MiddleRow">
         {left && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(left)}
@@ -54,6 +48,7 @@ export default function Select(props) {
         )}
         {select && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(select)}
@@ -63,6 +58,7 @@ export default function Select(props) {
         )}
         {right && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(right)}
@@ -75,6 +71,7 @@ export default function Select(props) {
       <div className="BottomRow">
         {down && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(down)}

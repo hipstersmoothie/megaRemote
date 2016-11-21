@@ -3,15 +3,7 @@ import _ from 'lodash';
 
 import './Controller.css';
 import APIButton from './../Components/APIButton';
-
-function prepare(control) {
-  return control.join ? control.join(',') : control;
-}
-
-function getControl(type, control) {
-  const command = prepare(control);
-  return command.indexOf(type) > -1;
-}
+import { prepare, getControl } from './helpers';
 
 export default function Media(props) {
   const controls = _.filter(props.controls, control => control.includes('TransportBasic') || control.includes('TransportExtended')
@@ -38,6 +30,7 @@ export default function Media(props) {
       <div className="TopRow">
         {stop && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(stop)}
@@ -47,6 +40,7 @@ export default function Media(props) {
         )}
         {play && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(play)}
@@ -56,6 +50,7 @@ export default function Media(props) {
         )}
         {pause && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(pause)}
@@ -68,6 +63,7 @@ export default function Media(props) {
       <div className="MiddleRow">
         {rewind && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(rewind)}
@@ -77,6 +73,7 @@ export default function Media(props) {
         )}
         {skipBackward && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(skipBackward)}
@@ -86,6 +83,7 @@ export default function Media(props) {
         )}
         {skipForward && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(skipForward)}
@@ -95,6 +93,7 @@ export default function Media(props) {
         )}
         {fastForward && (
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(fastForward)}
@@ -102,10 +101,6 @@ export default function Media(props) {
             className="FastForward"
           />
         )}
-      </div>
-
-      <div className="BottomRow">
-
       </div>
     </div>
   );

@@ -3,10 +3,7 @@ import _ from 'lodash';
 
 import './Controller.css';
 import APIButton from './../Components/APIButton';
-
-function prepare(control) {
-  return control.join ? control.join(',') : control;
-}
+import { prepare } from './helpers';
 
 export default function Navigation(props) {
   const controls = _.filter(props.controls, control => control.includes('Return') || control.includes('Menu')
@@ -26,6 +23,7 @@ export default function Navigation(props) {
       <div className="List">
         {_.map(controls, control =>
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(control)}

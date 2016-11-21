@@ -3,10 +3,7 @@ import _ from 'lodash';
 
 import './Controller.css';
 import APIButton from './../Components/APIButton';
-
-function prepare(control) {
-  return control.join ? control.join(',') : control;
-}
+import { prepare } from './helpers';
 
 function pretty(control) {
   return control.replace('Input', '').replace('HdmiOut', '');
@@ -28,6 +25,7 @@ export default function InputOutput(props) {
       <div className="List">
         {_.map(inputs, control =>
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(control)}
@@ -50,6 +48,7 @@ export default function InputOutput(props) {
 
         {_.map(mode, control =>
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.device}
             command={prepare(control)}

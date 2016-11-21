@@ -4,13 +4,13 @@ import './Devices.css';
 import APIButton from './../Components/APIButton';
 
 function Device(props) {
-  let className = 'Device';
+  let buttonType = 'primary';
 
   if (props.device === props.current) {
-    className = 'SelectedDevice';
+    buttonType = 'secondary';
   }
 
-  return <APIButton className={className} command={props.device} {...props} />;
+  return <APIButton buttonType={buttonType} className="Device" command={props.device} {...props} />;
 }
 
 Device.propTypes = {

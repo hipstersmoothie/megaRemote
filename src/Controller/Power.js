@@ -3,15 +3,7 @@ import _ from 'lodash';
 
 import './Controller.css';
 import APIButton from './../Components/APIButton';
-
-function prepare(control) {
-  return control.join ? control.join(',') : control;
-}
-
-function getControl(type, control) {
-  const command = prepare(control);
-  return command.indexOf(type) > -1;
-}
+import { prepare, getControl } from './helpers';
 
 export default function Power(props) {
   const controls = _.filter(props.controls, control => control.includes('Power'));
@@ -31,6 +23,7 @@ export default function Power(props) {
 
       {on && (
         <APIButton
+          buttonType="primary"
           type={props.type}
           target={props.device}
           command={prepare(on)}
@@ -41,6 +34,7 @@ export default function Power(props) {
 
       {off && (
         <APIButton
+          buttonType="primary"
           type={props.type}
           target={props.device}
           command={prepare(off)}
@@ -51,6 +45,7 @@ export default function Power(props) {
 
       {toggle && (
         <APIButton
+          buttonType="primary"
           type={props.type}
           target={props.device}
           command={prepare(toggle)}
@@ -61,6 +56,7 @@ export default function Power(props) {
 
       {source && (
         <APIButton
+          buttonType="primary"
           type={props.type}
           target={props.device}
           command={prepare(source)}
