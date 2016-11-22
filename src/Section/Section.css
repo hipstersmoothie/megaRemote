@@ -1,3 +1,7 @@
+.Section svg > * {
+  stroke: #AED581 !important;
+}
+
 .Section-list {
   display: flex;
   width: 100%;

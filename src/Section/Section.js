@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import request from 'superagent';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import './Section.css';
 import Controller from './../Controller/Controller';
@@ -47,13 +48,16 @@ class Section extends Component {
           {this.props.route}
         </h1>
 
-        <div className="Section-list">
-          {this.state.array.map(child =>
-            <GroupButton target={child} onClick={this.onClick.bind(this)} key={child} current={this.state.current} />
-          )}
-        </div>
-
-        {this.state.controller}
+        {this.state.array.length ? [
+          <div className="Section-list">
+            {this.state.array.map(child =>
+              <GroupButton target={child} onClick={this.onClick.bind(this)} key={child} current={this.state.current} />
+            )}
+          </div>,
+          this.state.controller
+        ] : (
+          <CircularProgress size={40} thickness={4} />
+        )}
       </div>
     );
   }
