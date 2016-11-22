@@ -25,7 +25,7 @@ export default function Power(props) {
         <APIButton
           buttonType="primary"
           type={props.type}
-          target={props.device}
+          target={props.target}
           command={prepare(on)}
           text="🌕"
           className="PowerOn"
@@ -36,7 +36,7 @@ export default function Power(props) {
         <APIButton
           buttonType="primary"
           type={props.type}
-          target={props.device}
+          target={props.target}
           command={prepare(off)}
           text="🌑"
           className="PowerOff"
@@ -47,7 +47,7 @@ export default function Power(props) {
         <APIButton
           buttonType="primary"
           type={props.type}
-          target={props.device}
+          target={props.target}
           command={prepare(toggle)}
           text="🌗"
           className="PowerToggle"
@@ -58,7 +58,7 @@ export default function Power(props) {
         <APIButton
           buttonType="primary"
           type={props.type}
-          target={props.device}
+          target={props.target}
           command={prepare(source)}
           text="S🌗"
           className="PowerToggleSource"
@@ -71,5 +71,5 @@ export default function Power(props) {
 Power.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
-  device: React.PropTypes.string
+  target: React.PropTypes.string
 };

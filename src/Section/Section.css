@@ -1,28 +1,28 @@
-.Devices-list {
+.Section-list {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
 }
 
-.Device {
+.SectionChild {
   flex: 200px;
   margin: 0 5px 5px 0;
 }
 
-.Device > * {
+.SectionChild > * {
   width: 100%;
 }
 
 @media (max-width: 700px) {
-  .Device {
+  .SectionChild {
     flex: 1;
   }
 
-  .Devices-list {
+  .Section-list {
     flex-direction: column;
   }
 
-  .Devices-list .Device-button {
+  .Section-list .Section-button {
     width: 80%;
     margin-bottom: 10px;
   }

@@ -34,6 +34,7 @@ APIButton.propTypes = {
   onClick: React.PropTypes.func,
   className: React.PropTypes.string,
   text: React.PropTypes.string,
+  buttonType: React.PropTypes.string,
 
   type: React.PropTypes.string,
   target: React.PropTypes.string,

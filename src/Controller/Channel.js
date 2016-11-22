@@ -16,7 +16,7 @@ export default function Channel(props) {
   const down = _.find(controls, _.partial(getControl, 'Down'));
   const defaults = _.extend({}, {
     type: props.type,
-    device: props.device,
+    target: props.target,
     buttonType: 'primary'
   });
 
@@ -48,5 +48,5 @@ export default function Channel(props) {
 Channel.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
-  device: React.PropTypes.string
+  target: React.PropTypes.string
 };

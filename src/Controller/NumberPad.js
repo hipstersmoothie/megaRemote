@@ -32,7 +32,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(one)}
             text="1"
             className="Number1"
@@ -43,7 +43,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(two)}
             text="2"
             className="Number2"
@@ -54,7 +54,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(three)}
             text="3"
             className="Number3"
@@ -66,7 +66,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(four)}
             text="4"
             className="Number4"
@@ -77,7 +77,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(five)}
             text="5"
             className="Number5"
@@ -88,7 +88,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(six)}
             text="6"
             className="Number6"
@@ -100,7 +100,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(seven)}
             text="7"
             className="Number7"
@@ -111,7 +111,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(eight)}
             text="8"
             className="Number8"
@@ -122,7 +122,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(nine)}
             text="9"
             className="Number9"
@@ -134,7 +134,7 @@ export default function NumberPad(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.targat}
             command={prepare(zero)}
             text="0"
             className="Number0"
@@ -148,5 +148,5 @@ export default function NumberPad(props) {
 NumberPad.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
-  device: React.PropTypes.string
+  targat: React.PropTypes.string
 };

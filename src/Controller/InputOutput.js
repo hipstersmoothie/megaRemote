@@ -27,7 +27,7 @@ export default function InputOutput(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(control)}
             text={pretty(control)}
             className="Input"
@@ -38,7 +38,7 @@ export default function InputOutput(props) {
         {_.map(outputs, control =>
           <APIButton
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(control)}
             text={pretty(control)}
             className="Output"
@@ -50,7 +50,7 @@ export default function InputOutput(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(control)}
             text={pretty(control)}
             className="Mode"
@@ -65,5 +65,5 @@ export default function InputOutput(props) {
 InputOutput.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  device: React.PropTypes.string
+  target: React.PropTypes.string
 };

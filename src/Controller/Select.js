@@ -27,7 +27,7 @@ export default function Select(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(up)}
             text="▲"
             className="NavigationUp"
@@ -40,7 +40,7 @@ export default function Select(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(left)}
             text="◀"
             className="NavigationDown"
@@ -50,7 +50,7 @@ export default function Select(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(select)}
             text="⦿"
             className="NavigationSelect"
@@ -60,7 +60,7 @@ export default function Select(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(right)}
             text="▶"
             className="NavigationDown"
@@ -73,7 +73,7 @@ export default function Select(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(down)}
             text="▼"
             className="NavigationDown"
@@ -87,5 +87,5 @@ export default function Select(props) {
 Select.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
-  device: React.PropTypes.string
+  target: React.PropTypes.string
 };

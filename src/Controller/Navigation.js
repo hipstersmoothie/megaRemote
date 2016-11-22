@@ -25,7 +25,7 @@ export default function Navigation(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(control)}
             className="Navigation"
             key={control}
@@ -39,5 +39,5 @@ export default function Navigation(props) {
 Navigation.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  device: React.PropTypes.string
+  target: React.PropTypes.string
 };

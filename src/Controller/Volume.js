@@ -24,7 +24,7 @@ export default function Volume(props) {
         <APIButton
           buttonType="primary"
           type={props.type}
-          target={props.device}
+          target={props.target}
           command={prepare(up)}
           text="▲"
           className="VolumeUp"
@@ -35,7 +35,7 @@ export default function Volume(props) {
         <APIButton
           buttonType="primary"
           type={props.type}
-          target={props.device}
+          target={props.target}
           command={prepare(down)}
           text="▼"
           className="VolumeDown"
@@ -46,7 +46,7 @@ export default function Volume(props) {
         <APIButton
           buttonType="primary"
           type={props.type}
-          target={props.device}
+          target={props.target}
           command={prepare(mute)}
           text="🔇"
           className="VolumeMute"
@@ -59,5 +59,5 @@ export default function Volume(props) {
 Volume.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
-  device: React.PropTypes.string
+  target: React.PropTypes.string
 };

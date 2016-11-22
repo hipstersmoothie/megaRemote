@@ -32,7 +32,7 @@ export default function Media(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(stop)}
             text="⏹"
             className="Stop"
@@ -42,7 +42,7 @@ export default function Media(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(play)}
             text="▶"
             className="Play"
@@ -52,7 +52,7 @@ export default function Media(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(pause)}
             text="&#10073;&#10073;"
             className="Pause"
@@ -65,7 +65,7 @@ export default function Media(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(rewind)}
             text="⏪"
             className="Rewind"
@@ -75,7 +75,7 @@ export default function Media(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(skipBackward)}
             text="◀"
             className="SkipBackward"
@@ -85,7 +85,7 @@ export default function Media(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(skipForward)}
             text="▶"
             className="SkipForward"
@@ -95,7 +95,7 @@ export default function Media(props) {
           <APIButton
             buttonType="primary"
             type={props.type}
-            target={props.device}
+            target={props.target}
             command={prepare(fastForward)}
             text="⏩"
             className="FastForward"
@@ -109,5 +109,5 @@ export default function Media(props) {
 Media.propTypes = {
   controls: React.PropTypes.array,
   type: React.PropTypes.string,
-  device: React.PropTypes.string
+  target: React.PropTypes.string
 };

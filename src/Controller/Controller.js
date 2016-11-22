@@ -22,7 +22,7 @@ function Controller(props) {
       <Select controls={props.controls} {...props} />
       <Media controls={props.controls} {...props} />
       <Navigation controls={props.controls} {...props} />
-      
+
       <InputOutput controls={props.controls} {...props} />
 
       <h4>Other</h4>
@@ -40,8 +40,7 @@ function Controller(props) {
           .filter(control => !control.includes('Return') && !control.includes('Menu') && !control.includes('Search') && !control.includes('Setup') && !control.includes('Display') && !control.includes('Back') && !control.includes('Home') && !control.includes('Clear') && !control.includes('Eject') && !control.includes('Info') && !control.includes('Guide') && !control.includes('Exit') && !control.includes('SmartHub') && !control.includes('Tools'))
           .map((control) => {
             const command = control.join ? control.join(',') : control;
-
-            return <APIButton type={props.type} target={props.device} command={command} className="Device" key={control} buttonType="primary" />;
+            return <APIButton type={props.type} target={props.target} command={command} className="Device" key={control} buttonType="primary" />;
           })
           .value()
         }
@@ -52,7 +51,7 @@ function Controller(props) {
 
 Controller.propTypes = {
   controls: React.PropTypes.array,
-  device: React.PropTypes.string,
+  target: React.PropTypes.string,
 };
 
 export default Controller;

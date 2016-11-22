@@ -5,9 +5,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './App.css';
-import Activities from './../Activities/Activities';
-import Devices from './../Devices/Devices';
 import MegaSwitcher from './../Components/MegaSwitcher';
+import Section from './../Section/Section';
+import command from './../command';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -31,8 +31,9 @@ const App = () => (
       </div>
 
       <MegaSwitcher />
-      <Activities />
-      <Devices />
+
+      <Section route="Activities" onSelection={target => command(`http://localhost:5000/Activities/${target}`)} />
+      <Section route="Devices" />
     </div>
   </MuiThemeProvider>
 );
