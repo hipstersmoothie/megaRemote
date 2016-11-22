@@ -16,23 +16,23 @@ function Devices() {
 
 function All() {
   return (
-    <div>
+    <Root>
       <MegaSwitcher />
       <Activities />
       <Devices />
-    </div>
+    </Root>
   );
 }
 
-const App = () => (
+const AppRouter = () => (
   <Router history={browserHistory}>
+    <Route path="/" component={All} />
     <Route path="/" component={Root}>
       <Route path="quick" component={MegaSwitcher} />
       <Route path="activities" component={Activities} />
       <Route path="devices" component={Devices} />
-      <Route path="all" component={All} />
     </Route>
   </Router>
 );
 
-export default App;
+export default AppRouter;

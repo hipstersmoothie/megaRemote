@@ -18,11 +18,12 @@ const nearbyIcon = <IconLocationOn />;
  */
 class BottomNavigationExampleSimple extends Component {
   render() {
-    let selected = 0;
-
-    if (this.props.location.includes('activities')) {
+    let selected;
+    if (this.props.location && this.props.location.includes('quick')) {
+      selected = 0;
+    } else if (this.props.location && this.props.location.includes('activities')) {
       selected = 1;
-    } else if (this.props.location.includes('devices')) {
+    } else if (this.props.location && this.props.location.includes('devices')) {
       selected = 2;
     }
 

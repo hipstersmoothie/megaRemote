@@ -25,9 +25,8 @@ const muiTheme = getMuiTheme({
 
 injectTapEventPlugin();
 
-const App = props => {
-  console.log(props)
-  return <MuiThemeProvider muiTheme={muiTheme}>
+const Root = props => (
+  <MuiThemeProvider muiTheme={muiTheme}>
     <div className="App">
       <Header />
 
@@ -35,13 +34,14 @@ const App = props => {
         {props.children}
       </div>
 
-      <BottomNav className="App-Footer" location={props.location.pathname}/>
+      <BottomNav className="App-Footer" location={props.location && props.location.pathname} />
     </div>
   </MuiThemeProvider>
+);
+
+Root.propTypes = {
+  children: React.PropTypes.any,
+  location: React.PropTypes.object
 };
 
-App.propTypes = {
-  children: React.PropTypes.object
-};
-
-export default App;
+export default Root;
