@@ -16,8 +16,7 @@ export default function Channel(props) {
   const down = _.find(controls, _.partial(getControl, 'Down'));
   const defaults = _.extend({}, {
     type: props.type,
-    target: props.target,
-    buttonType: 'primary'
+    target: props.target
   });
 
   return (

@@ -6,7 +6,7 @@ import command from './../command';
 function MegaPowerOff() {
   // TODO Fix
   return (
-    <RaisedButton onClick={() => command(`http://localhost:5000/allOff/${this.props.secondary}`)}>
+    <RaisedButton primary onClick={() => command(`http://192.168.0.4:5000/allOff/${this.props.secondary}`)}>
       All Off
     </RaisedButton>
   );

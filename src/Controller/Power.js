@@ -23,7 +23,6 @@ export default function Power(props) {
 
       {on && (
         <APIButton
-          buttonType="primary"
           type={props.type}
           target={props.target}
           command={prepare(on)}
@@ -34,7 +33,6 @@ export default function Power(props) {
 
       {off && (
         <APIButton
-          buttonType="primary"
           type={props.type}
           target={props.target}
           command={prepare(off)}
@@ -45,7 +43,6 @@ export default function Power(props) {
 
       {toggle && (
         <APIButton
-          buttonType="primary"
           type={props.type}
           target={props.target}
           command={prepare(toggle)}
@@ -56,7 +53,6 @@ export default function Power(props) {
 
       {source && (
         <APIButton
-          buttonType="primary"
           type={props.type}
           target={props.target}
           command={prepare(source)}

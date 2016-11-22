@@ -2,7 +2,7 @@ import React from 'react';
 import APIButton from './../Components/APIButton';
 
 function GroupButton(props) {
-  let buttonType = 'primary';
+  let buttonType;
 
   if (props.target === props.current) {
     buttonType = 'secondary';

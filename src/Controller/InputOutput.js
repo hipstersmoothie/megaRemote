@@ -25,7 +25,6 @@ export default function InputOutput(props) {
       <div className="List">
         {_.map(inputs, control =>
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(control)}
@@ -37,6 +36,7 @@ export default function InputOutput(props) {
 
         {_.map(outputs, control =>
           <APIButton
+            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(control)}
@@ -48,7 +48,6 @@ export default function InputOutput(props) {
 
         {_.map(mode, control =>
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(control)}

@@ -22,7 +22,6 @@ export default function Volume(props) {
 
       {up && (
         <APIButton
-          buttonType="primary"
           type={props.type}
           target={props.target}
           command={prepare(up)}
@@ -33,7 +32,6 @@ export default function Volume(props) {
 
       {down && (
         <APIButton
-          buttonType="primary"
           type={props.type}
           target={props.target}
           command={prepare(down)}
@@ -44,7 +42,6 @@ export default function Volume(props) {
 
       {mute && (
         <APIButton
-          buttonType="primary"
           type={props.type}
           target={props.target}
           command={prepare(mute)}

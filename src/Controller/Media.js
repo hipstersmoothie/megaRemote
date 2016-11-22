@@ -30,7 +30,6 @@ export default function Media(props) {
       <div className="TopRow">
         {stop && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(stop)}
@@ -40,7 +39,6 @@ export default function Media(props) {
         )}
         {play && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(play)}
@@ -50,7 +48,6 @@ export default function Media(props) {
         )}
         {pause && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(pause)}
@@ -63,7 +60,6 @@ export default function Media(props) {
       <div className="MiddleRow">
         {rewind && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(rewind)}
@@ -73,7 +69,6 @@ export default function Media(props) {
         )}
         {skipBackward && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(skipBackward)}
@@ -83,7 +78,6 @@ export default function Media(props) {
         )}
         {skipForward && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(skipForward)}
@@ -93,7 +87,6 @@ export default function Media(props) {
         )}
         {fastForward && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(fastForward)}

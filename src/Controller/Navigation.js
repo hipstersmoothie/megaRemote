@@ -23,7 +23,6 @@ export default function Navigation(props) {
       <div className="List">
         {_.map(controls, control =>
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(control)}

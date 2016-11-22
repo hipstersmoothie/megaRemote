@@ -18,7 +18,7 @@ class Section extends Component {
 
   componentWillMount() {
     request
-      .get(`http://localhost:5000/${this.props.route}`)
+      .get(`http://192.168.0.4:5000/${this.props.route}`)
       .end((err, res) => {
         this.setState({ array: JSON.parse(res.text) });
       });
@@ -29,7 +29,7 @@ class Section extends Component {
       this.setState({ current: target });
 
       request
-        .get(`http://localhost:5000/${this.props.route}/${target}`)
+        .get(`http://192.168.0.4:5000/${this.props.route}/${target}`)
         .end((err, res) => {
           this.setState({ controller: <Controller type={this.props.route} target={target} controls={JSON.parse(res.text)} /> });
         });

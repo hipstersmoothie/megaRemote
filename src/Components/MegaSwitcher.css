@@ -9,9 +9,27 @@
   }
 }
 
+@media (min-width: 700px) {
+  .MegaSwitcher {
+    height: 500px;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
 .MegaSwitcher > * {
-  flex: 1;
+  flex: 1 1 0%;
+}
+
+@media (max-width: 700px) {
+  .MegaSwitcher > * {
+    flex: inherit;
+  }
+}
+
+.MegaSwitcher > .Selector > * {
   padding: 10px;
+  text-align: left
 }
 
 .MegaSwitcher button {
@@ -24,11 +42,6 @@
   flex-direction: column;
 }
 
-.MegaSwitcher-section > select,
-.MegaSwitcher-section > .TurnOnSecondTv {
-  margin-bottom: 10px;
-}
-
 blockquote {
   padding: 0 1em;
   color: #777;
@@ -38,8 +51,32 @@ blockquote {
 
 .TurnOnSecondTv {
   text-align: left;
+  display: flex;
+  justify-content: center;
 }
 
 .TurnOnSecondTv label {
-  padding-left: 5px;
+  margin-left: -10px;
 }
+
+.TurnOnSecondTv-buttons > * {
+  margin: 10px;
+}
+
+/*@media (max-width: 700px) {
+  .TurnOnSecondTv > * {
+    width: 43% !important
+  }
+}
+
+@media (max-width: 650px) {
+  .TurnOnSecondTv > * {
+    width: 70% !important
+  }
+}
+
+@media (max-width: 300px) {
+  .TurnOnSecondTv > * {
+    width: 80% !important
+  }
+}*/

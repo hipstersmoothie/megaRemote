@@ -40,7 +40,7 @@ function Controller(props) {
           .filter(control => !control.includes('Return') && !control.includes('Menu') && !control.includes('Search') && !control.includes('Setup') && !control.includes('Display') && !control.includes('Back') && !control.includes('Home') && !control.includes('Clear') && !control.includes('Eject') && !control.includes('Info') && !control.includes('Guide') && !control.includes('Exit') && !control.includes('SmartHub') && !control.includes('Tools'))
           .map((control) => {
             const command = control.join ? control.join(',') : control;
-            return <APIButton type={props.type} target={props.target} command={command} className="Device" key={control} buttonType="primary" />;
+            return <APIButton type={props.type} target={props.target} command={command} className="Device" key={control} />;
           })
           .value()
         }

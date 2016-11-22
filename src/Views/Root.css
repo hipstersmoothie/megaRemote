@@ -13,6 +13,15 @@
   color: white;
 }
 
+.App-Content {
+  margin-bottom: 50px;
+}
+
+.App-Content button,
+.App-Content button span {
+  color: white !important;
+}
+
 .App-intro {
   font-size: large;
 }

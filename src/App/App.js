@@ -1,41 +1,38 @@
 import React from 'react';
+import { Router, Route, browserHistory } from 'react-router';
 
-import * as Colors from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import './App.css';
 import MegaSwitcher from './../Components/MegaSwitcher';
 import Section from './../Section/Section';
 import command from './../command';
+import Root from './../Views/Root';
 
-const muiTheme = getMuiTheme({
-  palette: {
-    // primary1Color: Colors.cyan500,
-    // primary2Color: Colors.cyan700,
-    // primary3Color: Colors.lightBlack,
-    // accent1Color: Colors.pinkA200,
-    // accent2Color: Colors.grey100,
-    // accent3Color: Colors.grey500,
-    // textColor: Colors.darkBlack,
-    alternateTextColor: Colors.red500,
-    // canvasColor: Colors.red500,
-  },
-});
+function Activities() {
+  return <Section route="Activities" onSelection={target => command(`http://localhost:5000/Activities/${target}`)} />;
+}
+
+function Devices() {
+  return <Section route="Devices" />;
+}
+
+function All() {
+  return (
+    <div>
+      <MegaSwitcher />
+      <Activities />
+      <Devices />
+    </div>
+  );
+}
 
 const App = () => (
-  <MuiThemeProvider muiTheme={muiTheme}>
-    <div className="App">
-      <div className="App-header">
-        <h2>Geek Haus Enterainment Control</h2>
-      </div>
-
-      <MegaSwitcher />
-
-      <Section route="Activities" onSelection={target => command(`http://localhost:5000/Activities/${target}`)} />
-      <Section route="Devices" />
-    </div>
-  </MuiThemeProvider>
+  <Router history={browserHistory}>
+    <Route path="/" component={Root}>
+      <Route path="quick" component={MegaSwitcher} />
+      <Route path="activities" component={Activities} />
+      <Route path="devices" component={Devices} />
+      <Route path="all" component={All} />
+    </Route>
+  </Router>
 );
 
 export default App;

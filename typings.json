@@ -2,6 +2,8 @@
   "globalDependencies": {
     "lodash": "registry:dt/lodash#4.14.0+20161110215204",
     "material-ui": "registry:dt/material-ui#0.16.0+20161019174653",
+    "react-router": "registry:dt/react-router#2.0.0+20160928130202",
+    "react-tap-event-plugin": "registry:dt/react-tap-event-plugin#0.0.0+20160602142434",
     "superagent": "registry:dt/superagent#2.0.0+20160906143408"
   }
 }

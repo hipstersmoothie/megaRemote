@@ -31,12 +31,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 805px;
+  max-width: 450px;
   margin: auto;
 }
 
 .Other-List > .Device > .Device-button, 
 .Input-button,
+.Navigation-button,
 .Output-button,
 .Mode-button {
    width: 100%;
@@ -49,8 +50,8 @@
   margin: 0 5px 5px 0;
 }
 
-.Other-List  .Device,
+.Other-List .Device,
 .Navigation {
-  flex-basis: 1;
+  flex: 1;
   margin: 0 5px 5px 0;
 }

@@ -9,7 +9,7 @@ class APIButton extends Component {
     }
 
     if (this.props.type) {
-      command(`http://localhost:5000/${this.props.type}${this.props.target ? `/${this.props.target}` : ''}/${this.props.command}`);
+      command(`http://192.168.0.4:5000/${this.props.type}${this.props.target ? `/${this.props.target}` : ''}/${this.props.command}`);
     }
   }
 

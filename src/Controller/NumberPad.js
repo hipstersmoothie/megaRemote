@@ -30,7 +30,6 @@ export default function NumberPad(props) {
       <div className="TopRow">
         {one && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(one)}
@@ -41,7 +40,6 @@ export default function NumberPad(props) {
 
         {two && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(two)}
@@ -52,7 +50,6 @@ export default function NumberPad(props) {
 
         {three && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(three)}
@@ -64,7 +61,6 @@ export default function NumberPad(props) {
       <div className="MiddleRow">
         {four && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(four)}
@@ -75,7 +71,6 @@ export default function NumberPad(props) {
 
         {five && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(five)}
@@ -86,7 +81,6 @@ export default function NumberPad(props) {
 
         {six && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(six)}
@@ -98,7 +92,6 @@ export default function NumberPad(props) {
       <div className="BottomRow">
         {seven && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(seven)}
@@ -109,7 +102,6 @@ export default function NumberPad(props) {
 
         {eight && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(eight)}
@@ -120,7 +112,6 @@ export default function NumberPad(props) {
 
         {nine && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(nine)}
@@ -132,7 +123,6 @@ export default function NumberPad(props) {
       <div className="BottomRow">
         {zero && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.targat}
             command={prepare(zero)}

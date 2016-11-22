@@ -25,7 +25,6 @@ export default function Select(props) {
       <div className="TopRow">
         {up && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(up)}
@@ -38,7 +37,6 @@ export default function Select(props) {
       <div className="MiddleRow">
         {left && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(left)}
@@ -48,7 +46,6 @@ export default function Select(props) {
         )}
         {select && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(select)}
@@ -58,7 +55,6 @@ export default function Select(props) {
         )}
         {right && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(right)}
@@ -71,7 +67,6 @@ export default function Select(props) {
       <div className="BottomRow">
         {down && (
           <APIButton
-            buttonType="primary"
             type={props.type}
             target={props.target}
             command={prepare(down)}
