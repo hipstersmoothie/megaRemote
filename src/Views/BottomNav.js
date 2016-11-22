@@ -18,6 +18,7 @@ const nearbyIcon = <IconLocationOn />;
  */
 function BottomNav(props) {
   let selected;
+
   if (props.location && props.location.includes('quick')) {
     selected = 0;
   } else if (props.location && props.location.includes('activities')) {

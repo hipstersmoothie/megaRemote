@@ -62,21 +62,3 @@ blockquote {
 .TurnOnSecondTv-buttons > * {
   margin: 10px;
 }
-
-/*@media (max-width: 700px) {
-  .TurnOnSecondTv > * {
-    width: 43% !important
-  }
-}
-
-@media (max-width: 650px) {
-  .TurnOnSecondTv > * {
-    width: 70% !important
-  }
-}
-
-@media (max-width: 300px) {
-  .TurnOnSecondTv > * {
-    width: 80% !important
-  }
-}*/

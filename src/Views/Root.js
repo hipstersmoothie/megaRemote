@@ -17,9 +17,7 @@ const muiTheme = getMuiTheme({
     accent1Color: Colors.pinkA200,
     accent2Color: Colors.grey100,
     accent3Color: Colors.grey500,
-    textColor: Colors.darkBlack,
-    alternateTextColor: Colors.cyan500,
-    // canvasColor: Colors.red500,
+    alternateTextColor: Colors.cyan500
   },
 });
 
