@@ -13,6 +13,7 @@ class Section extends Component {
     this.state = {
       array: [],
       current: null,
+      loadingController: false,
       controller: null
     };
   }
@@ -26,13 +27,19 @@ class Section extends Component {
   }
 
   onClick(target) {
-    if (this.state !== target) {
-      this.setState({ current: target });
+    if (this.state.current !== target) {
+      this.setState({
+        current: target,
+        loadingController: true
+      });
 
       request
         .get(`http://192.168.0.4:5000/${this.props.route}/${target}`)
         .end((err, res) => {
-          this.setState({ controller: <Controller type={this.props.route} target={target} controls={JSON.parse(res.text)} /> });
+          this.setState({
+            controller: <Controller type={this.props.route} target={target} controls={JSON.parse(res.text)} />,
+            loadingController: false
+          });
         });
     }
 
@@ -42,6 +49,8 @@ class Section extends Component {
   }
 
   render() {
+    const loading = <CircularProgress size={40} thickness={4} />;
+
     return (
       <div className="Section">
         <h1 className="Section-header">
@@ -54,9 +63,9 @@ class Section extends Component {
               <GroupButton target={child} onClick={this.onClick.bind(this)} key={child} current={this.state.current} />
             )}
           </div>,
-          this.state.controller
+          this.state.loadingController ? loading : this.state.controller
         ] : (
-          <CircularProgress size={40} thickness={4} />
+          loading
         )}
       </div>
     );
