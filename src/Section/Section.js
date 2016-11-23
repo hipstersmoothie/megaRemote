@@ -5,11 +5,13 @@ import './Section.css';
 import Controller from './../Controller/Controller';
 import GroupButton from './GroupButton';
 import Loader from './../Components/Loader/Loader';
+import ServerURL from './../Server';
 
 class Section extends Component {
   constructor(props) {
     super(props);
 
+    this.serverURL = ServerURL();
     this.state = {
       array: [],
       current: null,
@@ -20,7 +22,7 @@ class Section extends Component {
 
   componentWillMount() {
     request
-      .get(`http://192.168.0.4:5000/${this.props.route}`)
+      .get(`http://${this.serverURL}/${this.props.route}`)
       .end((err, res) => {
         this.setState({ array: JSON.parse(res.text) });
       });
@@ -34,7 +36,7 @@ class Section extends Component {
       });
 
       request
-        .get(`http://192.168.0.4:5000/${this.props.route}/${target}`)
+        .get(`http://${this.serverURL}/${this.props.route}/${target}`)
         .end((err, res) => {
           this.setState({
             controller: <Controller type={this.props.route} target={target} controls={JSON.parse(res.text)} />,
