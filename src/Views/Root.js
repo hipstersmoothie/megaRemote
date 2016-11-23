@@ -13,10 +13,7 @@ const muiTheme = getMuiTheme({
   palette: {
     primary1Color: Colors.red500,
     primary2Color: Colors.red700,
-    // primary3Color: Colors.lightBlack,
     accent1Color: Colors.pinkA200,
-    // accent2Color: Colors.grey100,
-    // accent3Color: Colors.grey500,
     alternateTextColor: Colors.cyan500
   },
 });

@@ -9,10 +9,10 @@ import Root from './../Views/Root';
 
 function Quick() {
   return (
-    <Root>
+    <div>
       <MasterVolume />
       <MegaSwitcher />
-    </Root>
+    </div>
   );
 }
 
@@ -38,8 +38,8 @@ function All() {
 const AppRouter = () => (
   <Router history={browserHistory}>
     <Route path="/" component={All} />
-    <Route path="quick" component={Quick} />
     <Route path="/" component={Root}>
+      <Route path="quick" component={Quick} />
       <Route path="activities" component={Activities} />
       <Route path="devices" component={Devices} />
     </Route>

@@ -36,9 +36,7 @@ class MasterVolume extends Component {
   changeVolume(event, volume) {
     request
       .post(`http://192.168.0.4:5000/volume/${volume}`)
-      .end((err, res) => {
-        console.log(err, res);
-      });
+      .end(() => {});
   }
 
   render() {
