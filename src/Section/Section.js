@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import request from 'superagent';
-import CircularProgress from 'material-ui/CircularProgress';
 
 import './Section.css';
 import Controller from './../Controller/Controller';
 import GroupButton from './GroupButton';
+import Loader from './../Components/Loader/Loader';
 
 class Section extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class Section extends Component {
   }
 
   render() {
-    const loading = <CircularProgress size={40} thickness={4} />;
+    const loading = <Loader />;
 
     return (
       <div className="Section">
@@ -57,14 +57,17 @@ class Section extends Component {
           {this.props.route}
         </h1>
 
-        {this.state.array.length ? [
+        {this.state.array.length > 0 && (
           <div className="Section-list">
             {this.state.array.map(child =>
               <GroupButton target={child} onClick={this.onClick.bind(this)} key={child} current={this.state.current} />
             )}
-          </div>,
-          this.state.loadingController ? loading : this.state.controller
-        ] : (
+          </div>
+        )}
+
+        {this.state.array.length && !this.state.loadingController ? (
+          this.state.controller
+        ) : (
           loading
         )}
       </div>
