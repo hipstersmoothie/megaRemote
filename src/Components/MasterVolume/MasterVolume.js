@@ -17,11 +17,20 @@ class MasterVolume extends Component {
   }
 
   componentDidMount() {
+    this.interval = setInterval(this.getVolume, 1000 * 60 * 10);
+    this.getVolume();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  getVolume() {
     request
-      .get('http://192.168.0.4:5000/volume/')
-      .end((err, res) => {
-        this.setState({ volume: JSON.parse(res.text).volume });
-      });
+    .get('http://192.168.0.4:5000/volume/')
+    .end((err, res) => {
+      this.setState({ volume: JSON.parse(res.text).volume });
+    });
   }
 
   changeVolume(event, volume) {
