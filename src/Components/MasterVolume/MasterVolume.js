@@ -17,7 +17,7 @@ class MasterVolume extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.getVolume, 1000 * 60 * 10);
+    this.interval = setInterval(this.getVolume.bind(this), 1000 * 60 * 10);
     this.getVolume();
   }
 

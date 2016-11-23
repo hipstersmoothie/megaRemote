@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import request from 'superagent';
 
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
@@ -18,8 +19,11 @@ import ListItem from 'material-ui/List/ListItem';
 import './MegaSwitcher.css';
 import command from './../../command';
 import MegaPowerOff from './../MegaPowerOff';
+import Scenes from './Lights';
+import ServerURL from './../../Server';
 
 const VideoSources = [
+  ['None', 'None'],
   ['PS4', 'InputGame1'],
   ['Xbox One', 'InputGame2'],
   ['PC', 'InputPc'],
@@ -48,10 +52,12 @@ class MegaSwitcher extends Component {
   constructor(props) {
     super(props);
 
+    this.serverURL = ServerURL();
     this.state = {
-      mainTv: 'InputGame1',
+      mainTv: 'None',
       secondaryTv: 'None',
-      mainAudio: 'InputGame1',
+      mainAudio: 'None',
+      scene: 'None',
       turnOnSecondaryTv: false
     };
   }
@@ -77,35 +83,48 @@ class MegaSwitcher extends Component {
   }
 
   setSystem() {
-    if (this.state.mainTv === 'InputGame2') {
-      command('http://192.168.0.4:5000/devices/Samsung%20TV/PowerOn');
+    // Toggle Xbox because we can!
+    if (this.state.mainTv === 'InputGame2' || this.state.secondaryTv === 'InputGame2') {
+      command(`http://${this.serverURL}/devices/Samsung%20TV/PowerOn`);
     }
 
     // Set Main TV
-    command('http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver/PowerOn');
-    command('http://192.168.0.4:5000/devices/Samsung%20TV/PowerOn');
-    command(`http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
-
-    // Set Secondary TV
-    if (this.state.turnOnSecondaryTv) {
-      command('http://192.168.0.4:5000/devices/Vizio%20TV/PowerToggle');
+    if (this.state.mainTv !== 'None') {
+      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/PowerOn`);
+      command(`http://${this.serverURL}/devices/Samsung%20TV/PowerOn`);
+      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
     }
 
-    command('http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver%20(2)/PowerOn');
-    command(`http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver%20(2)/${this.state.secondaryTv}`);
+    // Set Secondary TV
+    if (this.state.secondaryTv !== 'None') {
+      if (this.state.turnOnSecondaryTv) {
+        command(`http://${this.serverURL}/devices/Vizio%20TV/PowerToggle`);
+      }
+
+      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/PowerOn`);
+      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/${this.state.secondaryTv}`);
+    }
 
     // Set Audio
-    if (this.state.mainTv !== this.state.mainAudio) {
+    if (this.state.mainTv !== this.state.mainAudio && this.state.mainAudio !== 'None') {
       if (this.state.mainAudio === 'InputBluetooth' || this.state.mainAudio === 'InputAirplay') {
-        command(`http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
+        command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
 
         setTimeout(() => {
-          command('http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver/Mode');
+          command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/Mode`);
         }, 5000);
       } else {
-        command(`http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
-        command(`http://192.168.0.4:5000/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
+        command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
+        command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
       }
+    }
+
+    // Lights!
+    if (this.state.scene !== 'None') {
+      console.log(`http://${this.serverURL}/scenes/${this.state.scene}`)
+      request
+        .post(`http://${this.serverURL}/scenes/${this.state.scene}`)
+        .end(() => {});
     }
   }
 
@@ -195,6 +214,8 @@ class MegaSwitcher extends Component {
             </ListItem>
           </Paper>
         </div>
+
+        <Scenes onChange={(event, index, scene) => this.setState({ scene })} />
 
         <div className="TurnOnSecondTv-buttons">
           <RaisedButton onClick={this.setSystem.bind(this)}>
