@@ -57,7 +57,7 @@ class MegaSwitcher extends Component {
   }
 
   onClickMain(event, index, value) {
-    this.state.mainAudio = value;
+    this.setState({ mainAudio: value });
     this.setState({
       mainAudio: value,
       mainTv: value
