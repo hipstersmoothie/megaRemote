@@ -16,8 +16,8 @@ import TV from 'material-ui/svg-icons/hardware/desktop-windows';
 import ListItem from 'material-ui/List/ListItem';
 
 import './MegaSwitcher.css';
-import command from './../command';
-import MegaPowerOff from './MegaPowerOff';
+import command from './../../command';
+import MegaPowerOff from './../MegaPowerOff';
 
 const VideoSources = [
   ['PS4', 'InputGame1'],
@@ -154,9 +154,8 @@ class MegaSwitcher extends Component {
 
             <Divider
               style={{
-                marginBottom: '15px',
-                marginTop: '15px',
-                marginLeft: '25%',
+                marginLeft: 'auto',
+                marginRight: 'auto',
                 width: '50%',
                 backgroundColor: 'rgba(224, 224, 224, 0.5)'
               }}
