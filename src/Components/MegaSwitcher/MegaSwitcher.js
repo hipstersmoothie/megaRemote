@@ -28,8 +28,8 @@ const VideoSources = [
   ['Xbox One', 'InputGame2'],
   ['PC', 'InputPc'],
   ['Front HDMI', 'InputAux'],
-  ['Chromecast', 'InputBd%2FDvd']
-  // '': 'InputStrmBox',
+  ['Chromecast', 'InputBd%2FDvd'],
+  ['Apple TV', 'InputStrmBox']
 ];
 
 const SecondaryVideoSources = [
@@ -37,7 +37,8 @@ const SecondaryVideoSources = [
   ['PS4', 'InputGame1'],
   ['Xbox One', 'InputGame2'],
   ['PC', 'InputPc'],
-  ['Chromecast', 'InputBd%2FDvd']
+  ['Chromecast', 'InputBd%2FDvd'],
+  ['Apple TV', 'InputStrmBox']
 ];
 
 const AudioSources = [
