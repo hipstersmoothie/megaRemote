@@ -6,6 +6,7 @@ import MegaSwitcher from './../Components/MegaSwitcher/MegaSwitcher';
 import Section from './../Section/Section';
 import command from './../command';
 import Root from './../Views/Root';
+import CustomActivities from './../Components/customActivities/CustomActivities';
 
 function Quick() {
   return (
@@ -40,6 +41,7 @@ const AppRouter = () => (
     <Route path="/" component={All} />
     <Route path="/" component={Root}>
       <Route path="quick" component={Quick} />
+      <Route path="customActivities" component={CustomActivities} />
       <Route path="activities" component={Activities} />
       <Route path="devices" component={Devices} />
     </Route>
