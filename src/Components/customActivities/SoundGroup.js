@@ -13,6 +13,7 @@ const ActivityWrapper = {
 class SoundGroup extends ActivityGroup {
   render() {
     const selection = this.state.selection || (this.state.selection !== undefined && this.props.currentMainTv);
+
     return (
       <div className="ActivityGroup">
         <h4>{this.props.title}</h4>
@@ -24,7 +25,7 @@ class SoundGroup extends ActivityGroup {
               key={source.name}
               onClick={this.onClick.bind(this)}
               deselect={this.deselect.bind(this)}
-              current={selection}
+              current={selection || ''}
               disabled={!!(this.props.currentMainTv && this.props.currentMainTv !== source.name)}
             />
           )}
@@ -35,7 +36,7 @@ class SoundGroup extends ActivityGroup {
               key={source.name}
               onClick={this.onClick.bind(this)}
               deselect={this.deselect.bind(this)}
-              current={selection}
+              current={selection || ''}
             />
           )}
         </div>

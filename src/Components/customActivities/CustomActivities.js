@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-// import _ from 'lodash';
+import _ from 'lodash';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import ActivityGroup from './ActivityGroup';
 import SoundGroup from './SoundGroup';
 import MegaPowerOff from './../MegaPowerOff';
+import setSystem from './../../setSystem';
 
 const VideoSources = [
   {
@@ -35,19 +36,40 @@ const VideoSources = [
     name: 'Netflix',
     input: 'InputStrmBox',
     icon: 'images/netflix.svg',
-    color: '#B9090B'
+    color: '#B9090B',
+    commands: [
+      '/Devices/Apple TV Gen 2%2f3/Menu',
+      '/Devices/Apple TV Gen 2%2f3/Menu',
+      '/Devices/Apple TV Gen 2%2f3/DirectionDown',
+      '/Devices/Apple TV Gen 2%2f3/Select'
+    ]
   },
   {
     name: 'HBO',
     input: 'InputStrmBox',
     icon: 'images/HBO Go.svg',
-    color: 'rgb(33, 150, 243)'
+    color: 'rgb(33, 150, 243)',
+    commands: [
+      '/Devices/Apple TV Gen 2%2f3/Menu',
+      '/Devices/Apple TV Gen 2%2f3/Menu',
+      '/Devices/Apple TV Gen 2%2f3/DirectionDown',
+      '/Devices/Apple TV Gen 2%2f3/DirectionRight',
+      '/Devices/Apple TV Gen 2%2f3/Select'
+    ]
   },
   {
     name: 'Showtime',
     input: 'InputStrmBox',
     icon: 'images/SHO.svg',
-    color: '#FF0101'
+    color: '#FF0101',
+    commands: [
+      '/Devices/Apple TV Gen 2%2f3/Menu',
+      '/Devices/Apple TV Gen 2%2f3/Menu',
+      '/Devices/Apple TV Gen 2%2f3/DirectionDown',
+      '/Devices/Apple TV Gen 2%2f3/DirectionRight',
+      '/Devices/Apple TV Gen 2%2f3/DirectionRight',
+      '/Devices/Apple TV Gen 2%2f3/Select'
+    ]
   }
 ];
 
@@ -84,30 +106,46 @@ const SoundSources = [
   }
 ];
 
+function findSource(sources, event) {
+  const input = _.find(sources, source => source.name === event.selection);
+
+  return input ? input.input : null;
+}
+
 class CustomActivities extends Component {
   constructor(props) {
     super(props);
     this.state = {
       mainTv: null,
       secondaryTv: null,
-      sound: undefined
+      mainAudio: undefined
     };
   }
 
   selectMain(event) {
-    this.setState({ mainTv: event.selection });
+    this.setState({
+      mainTvName: event.selection,
+      mainTv: findSource(VideoSources, event)
+    });
   }
 
   selectSecondary(event) {
-    this.setState({ secondaryTv: event.selection });
+    this.setState({
+      secondaryTvName: event.selection,
+      secondaryTv: findSource(VideoSources, event)
+    });
   }
 
   selectSound(event) {
-    this.setState({ sound: event.selection });
+    this.setState({
+      mainAudioName: event.selection,
+      mainAudio: findSource(SoundSources, event)
+    });
   }
 
   setSystem() {
-    console.log('setting')
+    const extraCommands = _.find(VideoSources, source => (source.name === this.state.mainTvName || source.name === this.state.secondaryTvName) && source.commands) || {};
+    setSystem(this.state, extraCommands.commands);
   }
 
   render() {
@@ -120,7 +158,7 @@ class CustomActivities extends Component {
           soundSources={SoundSources}
           title="Sound"
           onClick={this.selectSound.bind(this)}
-          currentMainTv={this.state.mainTv}
+          currentMainTv={this.state.mainTvName}
         />
 
         <div className="TurnOnSecondTv-buttons" style={{ marginTop: '20px' }}>

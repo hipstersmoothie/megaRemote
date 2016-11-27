@@ -36,7 +36,7 @@ class Section extends Component {
       });
 
       request
-        .get(`http://${this.serverURL}/${this.props.route}/${target}`)
+        .get(`http://${this.serverURL}/${this.props.route}/${target.replace('/', '%2f')}`)
         .end((err, res) => {
           this.setState({
             controller: <Controller type={this.props.route} target={target} controls={JSON.parse(res.text)} />,

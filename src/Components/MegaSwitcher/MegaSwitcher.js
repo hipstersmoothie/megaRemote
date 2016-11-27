@@ -17,13 +17,13 @@ import TV from 'material-ui/svg-icons/hardware/desktop-windows';
 import ListItem from 'material-ui/List/ListItem';
 
 import './MegaSwitcher.css';
-import command from './../../command';
+import setSystem from './../../setSystem';
 import MegaPowerOff from './../MegaPowerOff';
 import Scenes from './Lights';
 import ServerURL from './../../Server';
 
 const VideoSources = [
-  ['None', 'None'],
+  ['None', null],
   ['PS4', 'InputGame1'],
   ['Xbox One', 'InputGame2'],
   ['PC', 'InputPc'],
@@ -33,7 +33,7 @@ const VideoSources = [
 ];
 
 const SecondaryVideoSources = [
-  ['None', 'None'],
+  ['None', null],
   ['PS4', 'InputGame1'],
   ['Xbox One', 'InputGame2'],
   ['PC', 'InputPc'],
@@ -55,10 +55,10 @@ class MegaSwitcher extends Component {
 
     this.serverURL = ServerURL();
     this.state = {
-      mainTv: 'None',
-      secondaryTv: 'None',
-      mainAudio: 'None',
-      scene: 'None',
+      mainTv: null,
+      secondaryTv: null,
+      mainAudio: null,
+      scene: null,
       turnOnSecondaryTv: false
     };
   }
@@ -85,48 +85,48 @@ class MegaSwitcher extends Component {
 
   setSystem() {
     // Toggle Xbox because we can!
-    if (this.state.mainTv === 'InputGame2' || this.state.secondaryTv === 'InputGame2') {
-      command(`http://${this.serverURL}/devices/Samsung%20TV/PowerOn`);
-    }
+    // if (this.state.mainTv === 'InputGame2' || this.state.secondaryTv === 'InputGame2') {
+    //   command(`http://${this.serverURL}/devices/Samsung%20TV/PowerOn`);
+    // }
 
-    // Set Main TV
-    if (this.state.mainTv !== 'None') {
-      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/PowerOn`);
-      command(`http://${this.serverURL}/devices/Samsung%20TV/PowerOn`);
-      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
-    }
+    // // Set Main TV
+    // if (this.state.mainTv) {
+    //   command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/PowerOn`);
+    //   command(`http://${this.serverURL}/devices/Samsung%20TV/PowerOn`);
+    //   command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
+    // }
 
-    // Set Secondary TV
-    if (this.state.secondaryTv !== 'None') {
-      if (this.state.turnOnSecondaryTv) {
-        command(`http://${this.serverURL}/devices/Vizio%20TV/PowerToggle`);
-      }
+    // // Set Secondary TV
+    // if (this.state.secondaryTv) {
+    //   if (this.state.turnOnSecondaryTv) {
+    //     command(`http://${this.serverURL}/devices/Vizio%20TV/PowerToggle`);
+    //   }
 
-      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/PowerOn`);
-      command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/${this.state.secondaryTv}`);
-    }
+    //   command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/PowerOn`);
+    //   command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/${this.state.secondaryTv}`);
+    // }
 
-    // Set Audio
-    if (this.state.mainTv !== this.state.mainAudio && this.state.mainAudio !== 'None') {
-      if (this.state.mainAudio === 'InputBluetooth' || this.state.mainAudio === 'InputAirplay') {
-        command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
+    // // Set Audio
+    // if (this.state.mainTv !== this.state.mainAudio && this.state.mainAudio) {
+    //   if (this.state.mainAudio === 'InputBluetooth' || this.state.mainAudio === 'InputAirplay') {
+    //     command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
 
-        setTimeout(() => {
-          command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/Mode`);
-        }, 5000);
-      } else {
-        command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
-        command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
-      }
-    }
+    //     setTimeout(() => {
+    //       command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/Mode`);
+    //     }, 5000);
+    //   } else {
+    //     command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainTv}`);
+    //     command(`http://${this.serverURL}/devices/Onkyo%20AV%20Receiver/${this.state.mainAudio}`);
+    //   }
+    // }
 
-    // Lights!
-    if (this.state.scene !== 'None') {
-      console.log(`http://${this.serverURL}/scenes/${this.state.scene}`)
-      request
-        .post(`http://${this.serverURL}/scenes/${this.state.scene}`)
-        .end(() => {});
-    }
+    // // Lights!
+    // if (this.state.scene !== 'None') {
+    //   console.log(`http://${this.serverURL}/scenes/${this.state.scene}`)
+    //   request
+    //     .post(`http://${this.serverURL}/scenes/${this.state.scene}`)
+    //     .end(() => {});
+    // }
   }
 
   turnOnSecondaryTv() {
@@ -219,7 +219,7 @@ class MegaSwitcher extends Component {
         <Scenes onChange={(event, index, scene) => this.setState({ scene })} />
 
         <div className="TurnOnSecondTv-buttons">
-          <RaisedButton onClick={this.setSystem.bind(this)}>
+          <RaisedButton onClick={setSystem.bind(this, this.state)}>
             Set!
           </RaisedButton>
           <MegaPowerOff secondary={this.state.turnOnSecondaryTv} />
