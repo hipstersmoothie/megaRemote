@@ -35,7 +35,7 @@ class ActivityGroup extends Component {
   render() {
     return (
       <div className="ActivityGroup">
-        <h1>{this.props.title}</h1>
+        <h4>{this.props.title}</h4>
 
         <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
           {_.map(this.props.activities, source =>

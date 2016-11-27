@@ -15,7 +15,7 @@ class SoundGroup extends ActivityGroup {
     const selection = this.state.selection || (this.state.selection !== undefined && this.props.currentMainTv);
     return (
       <div className="ActivityGroup">
-        <h1>{this.props.title}</h1>
+        <h4>{this.props.title}</h4>
 
         <div style={_.extend({}, ActivityWrapper, selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
           {_.map(this.props.videoSources, source =>

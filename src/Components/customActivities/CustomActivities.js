@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 // import _ from 'lodash';
 
+import RaisedButton from 'material-ui/RaisedButton';
 import ActivityGroup from './ActivityGroup';
 import SoundGroup from './SoundGroup';
+import MegaPowerOff from './../MegaPowerOff';
 
 const VideoSources = [
   {
@@ -69,13 +71,13 @@ const SoundSources = [
     color: '#e53935'
   },
   {
-    name: 'Net TV',
+    name: 'Net',
     input: 'InputNet',
     icon: 'images/globe.svg',
     color: '#81D4FA'
   },
   {
-    name: 'Secondary TV Sound',
+    name: 'tv2 Sound',
     input: 'InputTv',
     icon: 'images/tv2.svg',
     color: '#26A69A'
@@ -104,6 +106,10 @@ class CustomActivities extends Component {
     this.setState({ sound: event.selection });
   }
 
+  setSystem() {
+    console.log('setting')
+  }
+
   render() {
     return (
       <div className="CustomActivities">
@@ -116,6 +122,13 @@ class CustomActivities extends Component {
           onClick={this.selectSound.bind(this)}
           currentMainTv={this.state.mainTv}
         />
+
+        <div className="TurnOnSecondTv-buttons" style={{ marginTop: '20px' }}>
+          <RaisedButton onClick={this.setSystem.bind(this)}>
+            Set!
+          </RaisedButton>
+          <MegaPowerOff secondary={this.state.turnOnSecondaryTv} />
+        </div>
       </div>
     );
   }
