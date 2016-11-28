@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import Avatar from 'material-ui/Avatar';
-import SvgIcon from 'material-ui/SvgIcon';
-// import command from './../../command';
 
 const ActivityStyle = {
   display: 'inline-flex',
@@ -69,7 +67,7 @@ class Activity extends Component {
 
         {isCurrent && [
           <h2 key="title" style={isCurrent ? { width: '100%' } : {}}>{this.props.name}</h2>,
-          <img key="exit" src="images/x.svg" style={SelectedImageStyle} onClick={this.props.deselect} />
+          <img key="exit" src="images/x.svg" style={SelectedImageStyle} onClick={this.props.deselect} alt="Deselect" />
         ]}
       </div>
     );
@@ -78,6 +76,7 @@ class Activity extends Component {
 
 Activity.propTypes = {
   onClick: React.PropTypes.func,
+  deselect: React.PropTypes.func,
   icon: React.PropTypes.string,
   name: React.PropTypes.string,
   color: React.PropTypes.string,

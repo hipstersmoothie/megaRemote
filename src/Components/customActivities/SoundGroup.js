@@ -2,46 +2,38 @@ import React from 'react';
 import _ from 'lodash';
 
 import './ActivityGroup.css';
-import Activity from './Activity';
 import ActivityGroup from './ActivityGroup';
 
-const ActivityWrapper = {
-  position: 'relative',
-  overflow: 'hidden'
-};
-
 class SoundGroup extends ActivityGroup {
+  componentWillReceiveProps(props) {
+    const currentActivity = _.find(this.props.videoSources, activity => activity.name === this.state.selection)
+      || _.find(this.props.soundSources, activity => activity.name === this.state.selection)
+      || {};
+
+    if (!this.state.userInteracted && this.isDisabled(props, currentActivity)) {
+      this.deselect({ stopPropagation: () => {} });
+    }
+
+    if (!this.state.selection && props.currentMainTv && !this.state.userInteracted) {
+      this.setState({ selection: props.currentMainTv });
+    } else if (!props.currentMainTv && this.state.selection === this.props.currentMainTv && this.props.currentMainTv) {
+      this.setState({ selection: props.currentMainTv });
+    }
+  }
+
+  isDisabled(props, source) {
+    if (props.soundSources.indexOf(source) > -1) {
+      return false;
+    }
+
+    return props.currentMainTv && source.name && props.currentMainTv !== source.name;
+  }
+
   render() {
-    const selection = this.state.selection || (this.state.selection !== undefined && this.props.currentMainTv);
+    this.selection = this.state.selection || (!this.state.userInteracted && this.props.currentMainTv);
+    this.activities = _.union(this.props.videoSources, this.props.soundSources);
 
-    return (
-      <div className="ActivityGroup">
-        <h4>{this.props.title}</h4>
-
-        <div style={_.extend({}, ActivityWrapper, selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
-          {_.map(this.props.videoSources, source =>
-            <Activity
-              {...source}
-              key={source.name}
-              onClick={this.onClick.bind(this)}
-              deselect={this.deselect.bind(this)}
-              current={selection || ''}
-              disabled={!!(this.props.currentMainTv && this.props.currentMainTv !== source.name)}
-            />
-          )}
-
-          {_.map(this.props.soundSources, source =>
-            <Activity
-              {...source}
-              key={source.name}
-              onClick={this.onClick.bind(this)}
-              deselect={this.deselect.bind(this)}
-              current={selection || ''}
-            />
-          )}
-        </div>
-      </div>
-    );
+    return super.render();
   }
 }
 

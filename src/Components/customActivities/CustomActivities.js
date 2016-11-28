@@ -6,6 +6,7 @@ import ActivityGroup from './ActivityGroup';
 import SoundGroup from './SoundGroup';
 import MegaPowerOff from './../MegaPowerOff';
 import setSystem from './../../setSystem';
+import MasterVolume from './../MasterVolume/MasterVolume';
 
 const VideoSources = [
   {
@@ -28,12 +29,14 @@ const VideoSources = [
   },
   {
     name: 'Apple TV',
+    isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/apple.svg',
     color: 'rgb(88, 86, 214)'
   },
   {
     name: 'Netflix',
+    isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/netflix.svg',
     color: '#B9090B',
@@ -41,11 +44,15 @@ const VideoSources = [
       '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/DirectionDown',
+      '/Devices/Apple TV Gen 2%2f3/Select',
+      '/Devices/Apple TV Gen 2%2f3/DirectionDown',
+      '/Devices/Apple TV Gen 2%2f3/DirectionDown',
       '/Devices/Apple TV Gen 2%2f3/Select'
     ]
   },
   {
     name: 'HBO',
+    isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/HBO Go.svg',
     color: 'rgb(33, 150, 243)',
@@ -59,6 +66,7 @@ const VideoSources = [
   },
   {
     name: 'Showtime',
+    isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/SHO.svg',
     color: '#FF0101',
@@ -99,7 +107,7 @@ const SoundSources = [
     color: '#81D4FA'
   },
   {
-    name: 'tv2 Sound',
+    name: 'TV2 Sound',
     input: 'InputTv',
     icon: 'images/tv2.svg',
     color: '#26A69A'
@@ -120,6 +128,11 @@ class CustomActivities extends Component {
       secondaryTv: null,
       mainAudio: undefined
     };
+  }
+
+  setSystem() {
+    const extraCommands = _.find(VideoSources, source => (source.name === this.state.mainTvName || source.name === this.state.secondaryTvName) && source.commands) || {};
+    setSystem(this.state, extraCommands.commands);
   }
 
   selectMain(event) {
@@ -143,16 +156,13 @@ class CustomActivities extends Component {
     });
   }
 
-  setSystem() {
-    const extraCommands = _.find(VideoSources, source => (source.name === this.state.mainTvName || source.name === this.state.secondaryTvName) && source.commands) || {};
-    setSystem(this.state, extraCommands.commands);
-  }
-
   render() {
+    // console.log(this.state)
     return (
       <div className="CustomActivities">
+        <MasterVolume />
         <ActivityGroup activities={VideoSources} title="Main TV" onClick={this.selectMain.bind(this)} />
-        <ActivityGroup activities={VideoSources} title="Secondary TV" onClick={this.selectSecondary.bind(this)} />
+        <ActivityGroup activities={VideoSources} title="Secondary TV" onClick={this.selectSecondary.bind(this)} currentMainTv={this.state.mainTvName} />
         <SoundGroup
           videoSources={VideoSources}
           soundSources={SoundSources}

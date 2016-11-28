@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
+import Paper from 'material-ui/Paper';
 import './ActivityGroup.css';
 import Activity from './Activity';
 
@@ -17,31 +18,58 @@ class ActivityGroup extends Component {
     };
   }
 
+  componentWillReceiveProps(props) {
+    const currentActivity = _.find(this.props.activities, activity => activity.name === this.state.selection) || {};
+
+    if (this.isDisabled(props, currentActivity)) {
+      this.deselect({ stopPropagation: () => {} });
+    }
+  }
+
   onClick(selection) {
-    this.setState({
-      selection
-    });
-    this.props.onClick({ selection });
+    if (this.state.selection !== selection) {
+      this.setState({
+        selection
+      });
+      this.props.onClick({ selection });
+    }
   }
 
   deselect(ev) {
     ev.stopPropagation();
     this.setState({
-      selection: undefined
+      selection: undefined,
+      userInteracted: true
     });
     this.props.onClick({ selection: undefined });
   }
 
+  isDisabled(props, source) {
+    return !!(source.isSmartActivity
+      && props.currentMainTv && ['Apple TV', 'Netflix', 'HBO', 'Showtime'].indexOf(props.currentMainTv) > -1
+      && props.currentMainTv !== source.name);
+  }
+
   render() {
+    console.log(this.state)
     return (
       <div className="ActivityGroup">
-        <h4>{this.props.title}</h4>
+        <Paper zDepth={2} style={{ margin: '10px 20px', padding: '10px 20px 30px' }}>
+          <h4>{this.props.title}</h4>
 
-        <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
-          {_.map(this.props.activities, source =>
-            <Activity {...source} key={source.name} deselect={this.deselect.bind(this)} onClick={this.onClick.bind(this)} current={this.state.selection} />
-          )}
-        </div>
+          <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
+            {_.map(this.activities || this.props.activities, source =>
+              <Activity
+                {...source}
+                key={source.name}
+                deselect={this.deselect.bind(this)}
+                onClick={this.onClick.bind(this)}
+                current={this.selection || this.state.selection}
+                disabled={this.isDisabled(this.props, source)}
+              />
+            )}
+          </div>
+        </Paper>
       </div>
     );
   }
@@ -49,6 +77,7 @@ class ActivityGroup extends Component {
 
 ActivityGroup.propTypes = {
   title: React.PropTypes.string,
+  currentMainTv: React.PropTypes.string,
   activities: React.PropTypes.array,
   onClick: React.PropTypes.func
 };
