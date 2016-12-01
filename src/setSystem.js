@@ -29,8 +29,28 @@ export default function setSystem(inputs, extraCommands) {
     command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/${inputs.secondaryTv}`);
   }
 
+  let index = 0;
+  function runExtra(commands) {
+    if (!commands || !commands.length) {
+      return;
+    }
+
+    const extraCommand = _.first(commands);
+
+    if (extraCommand === 'timeout') {
+      setTimeout(() => {
+        runExtra(_.rest(commands));
+      }, 1000 * index);
+    } else {
+      command(`http://${serverURL}${extraCommand}`);
+      runExtra(_.rest(commands));
+    }
+
+    index++;
+  }
+
   if (extraCommands) {
-    _.forEach(extraCommands, extraCommand => command(`http://${serverURL}${extraCommand}`));
+    runExtra(extraCommands);
   }
 
   // Set Audio

@@ -42,12 +42,11 @@ const VideoSources = [
     color: '#B9090B',
     commands: [
       '/Devices/Apple TV Gen 2%2f3/Menu',
+      'timeout',
+      '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/DirectionDown',
       '/Devices/Apple TV Gen 2%2f3/Select',
-      '/Devices/Apple TV Gen 2%2f3/DirectionDown',
-      '/Devices/Apple TV Gen 2%2f3/DirectionDown',
-      '/Devices/Apple TV Gen 2%2f3/Select'
     ]
   },
   {
@@ -57,6 +56,8 @@ const VideoSources = [
     icon: 'images/HBO Go.svg',
     color: 'rgb(33, 150, 243)',
     commands: [
+      '/Devices/Apple TV Gen 2%2f3/Menu',
+      'timeout',
       '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/DirectionDown',
@@ -72,9 +73,12 @@ const VideoSources = [
     color: '#FF0101',
     commands: [
       '/Devices/Apple TV Gen 2%2f3/Menu',
+      'timeout',
+      '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/DirectionDown',
       '/Devices/Apple TV Gen 2%2f3/DirectionRight',
+      'timeout',
       '/Devices/Apple TV Gen 2%2f3/DirectionRight',
       '/Devices/Apple TV Gen 2%2f3/Select'
     ]
