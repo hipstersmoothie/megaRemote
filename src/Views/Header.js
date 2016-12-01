@@ -5,8 +5,8 @@ import './Root.css';
 
 const Header = () => (
   <Link to="/" >
-    <div className="App-header" style={{ marginBottom: '15px' }}>
-      <h2>Geek Haus Enterainment Control</h2>
+    <div className="App-header">
+      Geek Haus Enterainment Control
     </div>
   </Link>
 );
