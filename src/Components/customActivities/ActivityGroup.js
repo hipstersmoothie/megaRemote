@@ -45,17 +45,23 @@ class ActivityGroup extends Component {
   }
 
   isDisabled(props, source) {
-    return !!(source.isSmartActivity
+    const appleTvInUse = !!(source.isSmartActivity
       && props.currentMainTv && ['Apple TV', 'Netflix', 'HBO', 'Showtime'].indexOf(props.currentMainTv) > -1
       && props.currentMainTv !== source.name);
+
+    const xboxInUse = !!(source.isXboxActivity
+      && props.currentMainTv && props.currentMainTv !== source.name);
+
+    return appleTvInUse || xboxInUse;
   }
 
   render() {
-    console.log(this.state)
     return (
       <div className="ActivityGroup">
-        <Paper zDepth={2} style={{ margin: '10px 20px', padding: '10px 20px 30px' }}>
+        <Paper zDepth={2} style={{ position: 'relative', margin: '10px 20px', padding: '10px 20px 30px' }}>
           <h4>{this.props.title}</h4>
+
+          {this.props.control}
 
           <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
             {_.map(this.activities || this.props.activities, source =>
@@ -79,7 +85,8 @@ ActivityGroup.propTypes = {
   title: React.PropTypes.string,
   currentMainTv: React.PropTypes.string,
   activities: React.PropTypes.array,
-  onClick: React.PropTypes.func
+  onClick: React.PropTypes.func,
+  control: React.PropTypes.object
 };
 
 export default ActivityGroup;

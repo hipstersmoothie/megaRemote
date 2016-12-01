@@ -19,6 +19,7 @@ const VideoSources = [
   },
   {
     name: 'Xbox One',
+    isXboxActivity: true,
     input: 'InputGame2',
     icon: 'images/xbox.svg',
     color: '#5dc21e'
@@ -83,6 +84,25 @@ const VideoSources = [
       'timeout',
       '/Devices/Apple TV Gen 2%2f3/DirectionRight',
       '/Devices/Apple TV Gen 2%2f3/Select'
+    ]
+  },
+  {
+    name: 'Plex',
+    isXboxActivity: true,
+    input: 'InputGame2',
+    icon: 'images/plex.svg',
+    color: '#e5a00d',
+    commands: [
+      '/Devices/Microsoft%20Xbox%20One/Xbox',
+      'timeout',
+      'timeout',
+      'timeout',
+      '/Devices/Microsoft%20Xbox%20One/DirectionDown',
+      '/Devices/Microsoft%20Xbox%20One/DirectionDown',
+      '/Devices/Microsoft%20Xbox%20One/DirectionDown',
+      '/Devices/Microsoft%20Xbox%20One/DirectionDown',
+      '/Devices/Microsoft%20Xbox%20One/DirectionDown',
+      '/Devices/Microsoft%20Xbox%20One/A'
     ]
   }
 ];
@@ -170,7 +190,7 @@ class CustomActivities extends Component {
   render() {
     // console.log(this.state)
     return (
-      <div className="CustomActivities">
+      <div className="CustomActivities" style={{marginBottom: '60px'}}>
         <MasterVolume />
         <ActivityGroup activities={VideoSources} title="Main TV" onClick={this.selectMain.bind(this)} />
         <ActivityGroup
