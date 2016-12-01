@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+.App iframe {
+  height: 100%;
+  width: 100%;
+  border: 0;
+}
+
 .App > a {
   text-decoration: none;
 }
@@ -18,7 +24,7 @@
 }
 
 .App-Content {
-  margin-bottom: 70px;
+  height: calc(100vh - 56px - 58px);
 }
 
 .App-Content button,

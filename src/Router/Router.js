@@ -36,12 +36,18 @@ function All() {
   );
 }
 
+function tvShows() {
+  return (
+    <iframe src="http://192.168.0.14:32400/web/index.html" />
+  );
+}
+
 const AppRouter = () => (
   <Router history={browserHistory}>
     <Route path="/" component={All} />
     <Route path="/" component={Root}>
-      <Route path="quick" component={Quick} />
-      <Route path="customActivities" component={CustomActivities} />
+      <Route path="quick" component={CustomActivities} />
+      <Route path="tvShows" component={tvShows} />
       <Route path="activities" component={Activities} />
       <Route path="devices" component={Devices} />
     </Route>
