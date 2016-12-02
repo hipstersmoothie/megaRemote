@@ -45,7 +45,8 @@ class ActivityGroup extends Component {
       && props.currentMainTv && ['Apple TV', 'Netflix', 'HBO', 'Showtime'].indexOf(props.currentMainTv) > -1
       && props.currentMainTv !== source.name);
 
-    const xboxInUse = !!(source.isXboxActivity
+    const currentActivity = _.find(props.activities, activity => activity.name === props.currentMainTv) || {};
+    const xboxInUse = !!(source.isXboxActivity && currentActivity.isXboxActivity
       && props.currentMainTv && props.currentMainTv !== source.name);
 
     return appleTvInUse || xboxInUse;
