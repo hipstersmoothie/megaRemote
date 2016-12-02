@@ -50,7 +50,7 @@ class MasterVolume extends Component {
           step={1}
           min={0}
           max={70}
-          onChange={_.debounce(this.changeVolume, 150)}
+          onChange={_.debounce(this.changeVolume.bind(this), 150)}
           sliderStyle={{ height: '30px', marginBottom: '24px' }}
         />
       </div>
