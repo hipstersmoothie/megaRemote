@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import Speaker from 'material-ui/svg-icons/hardware/speaker-group';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActivityGroup from './ActivityGroup';
 import SoundGroup from './SoundGroup';
@@ -47,6 +46,8 @@ const VideoSources = [
     color: '#B9090B',
     commands: [
       '/Devices/Apple TV Gen 2%2f3/Menu',
+      'timeout',
+      'timeout',
       'timeout',
       '/Devices/Apple TV Gen 2%2f3/Menu',
       '/Devices/Apple TV Gen 2%2f3/Menu',
@@ -160,7 +161,6 @@ class CustomActivities extends Component {
 
   setSystem() {
     const extraCommands = _.find(VideoSources, source => (source.name === this.state.mainTvName || source.name === this.state.secondaryTvName) && source.commands) || {};
-    console.log('ev', this.state)
     setSystem(this.state, extraCommands.commands);
   }
 
@@ -179,7 +179,6 @@ class CustomActivities extends Component {
   }
 
   selectSound(event) {
-    console.log(event)
     this.setState({
       mainAudioName: event.selection,
       mainAudio: findSource(SoundSources, event)

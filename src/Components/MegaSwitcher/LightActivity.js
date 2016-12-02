@@ -37,9 +37,9 @@ function xyBriToRgb(x, y, bri) {
   }
 
   return {
-    r,
-    g,
-    b
+    r: Math.round(r),
+    g: Math.round(g),
+    b: Math.round(b)
   };
 }
 
