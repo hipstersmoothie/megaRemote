@@ -20,7 +20,6 @@ class Scenes extends Component {
     request
       .get(`http://${this.serverURL}/scenes/`)
       .end((err, res) => {
-        console.log(JSON.parse(res.text))
         this.setState({ scenes: JSON.parse(res.text) });
       });
   }
@@ -45,5 +44,9 @@ class Scenes extends Component {
     );
   }
 }
+
+Scenes.propTypes = {
+  onChange: React.PropTypes.func
+};
 
 export default Scenes;

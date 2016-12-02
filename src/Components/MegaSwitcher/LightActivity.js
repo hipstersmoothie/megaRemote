@@ -43,7 +43,6 @@ function xyBriToRgb(x, y, bri) {
   };
 }
 
-
 class LightActivity extends Activity {
   constructor(props) {
     super(props);

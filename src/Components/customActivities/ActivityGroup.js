@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import './ActivityGroup.css';
 import Activity from './Activity';
@@ -82,7 +81,7 @@ class ActivityGroup extends Component {
         >
           <div style={{ display: 'table-row' }}>
             <div style={AvatarWrapper}>
-              <img role="presentation" src={this.props.icon} style={{ height: '50px', verticalAlign: 'middle' }}/>
+              <img role="presentation" src={this.props.icon} style={{ height: '50px', verticalAlign: 'middle' }} />
             </div>
 
 
@@ -96,7 +95,6 @@ class ActivityGroup extends Component {
                   onClick={this.onClick.bind(this)}
                   current={this.selection || this.state.selection}
                   disabled={this.isDisabled(this.props, source)}
-                  showColor={this.props.showColor}
                 />
               )}
             </div>
@@ -108,11 +106,11 @@ class ActivityGroup extends Component {
 }
 
 ActivityGroup.propTypes = {
-  title: React.PropTypes.string,
-  currentMainTv: React.PropTypes.string,
+  currentMainTv: React.PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  icon: React.PropTypes.string,
   activities: React.PropTypes.array,
   onClick: React.PropTypes.func,
-  control: React.PropTypes.object,
+  control: React.PropTypes.object, // eslint-disable-line react/no-unused-prop-types
   activityAsset: React.PropTypes.func
 };
 

@@ -191,9 +191,8 @@ class CustomActivities extends Component {
   }
 
   render() {
-    // console.log(this.state)
     return (
-      <div className="CustomActivities" style={{marginBottom: '60px'}}>
+      <div className="CustomActivities" style={{ marginBottom: '60px' }}>
         <MasterVolume />
         <ActivityGroup
           icon="/images/tv.svg"
@@ -227,8 +226,7 @@ class CustomActivities extends Component {
           </RaisedButton>}
         />
 
-        <Scenes onChange={(scene) => { console.log('here', scene);this.setState({ scene })}  }/>
-
+        <Scenes onChange={scene => this.setState({ scene })} />
 
         <div className="TurnOnSecondTv-buttons" style={{ marginTop: '20px' }}>
           <RaisedButton onClick={this.setSystem.bind(this)}>
@@ -240,9 +238,5 @@ class CustomActivities extends Component {
     );
   }
 }
-
-CustomActivities.propTypes = {
-
-};
 
 export default CustomActivities;

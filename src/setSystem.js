@@ -46,7 +46,7 @@ export default function setSystem(inputs, extraCommands) {
       runExtra(_.rest(commands));
     }
 
-    index++;
+    index += 1;
   }
 
   if (extraCommands) {
@@ -66,10 +66,9 @@ export default function setSystem(inputs, extraCommands) {
       command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver/${inputs.mainAudio}`);
     }
   }
+
   // Lights!
   if (inputs.scene) {
-      console.log(inputs)
-
     request
       .post(`http://${serverURL}/scenes/${inputs.scene}`)
       .end(() => {});
