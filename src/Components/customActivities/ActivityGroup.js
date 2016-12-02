@@ -81,11 +81,9 @@ class ActivityGroup extends Component {
           }}
         >
           <div style={{ display: 'table-row' }}>
-            <div style={AvatarWrapper}>
+            <div className={this.props.className} style={AvatarWrapper} onClick={this.props.control} >
               <img role="presentation" src={this.props.icon} style={{ height: '50px', verticalAlign: 'middle' }} />
             </div>
-
-
 
             <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
               {_.map(this.activities || this.props.activities, source =>

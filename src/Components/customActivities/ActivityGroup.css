@@ -2,3 +2,11 @@
   max-width: 475px;
   margin: auto;
 }
+
+.ActiveWrapper:active {
+  background-color: red !important;
+}
+
+.ActiveSoundWrapper:active {
+  background-color: lightblue !important;
+}
