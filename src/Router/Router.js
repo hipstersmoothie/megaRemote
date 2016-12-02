@@ -38,7 +38,7 @@ function All() {
 
 function tvShows() {
   return (
-    <iframe src="http://192.168.0.14:32400/web/index.html" />
+    <iframe src="http://192.168.1.12:32400/web/index.html" />
   );
 }
 

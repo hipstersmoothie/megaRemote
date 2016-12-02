@@ -52,16 +52,21 @@ class LightActivity extends Activity {
       .get(`http://${ServerURL()}/scenes/${this.props.id}`)
       .end((err, res) => {
         const lightStates = JSON.parse(res.text).lightstates;
+        const colors = [];
 
-        _.forIn(lightStates, (state, index) => {
+        _.forIn(lightStates, (state) => {
           if (state.xy) {
             const rgb = xyBriToRgb(state.xy[0], state.xy[1], state.bri);
-            this.setState({
-              backgroundColor: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
-            });
+            const isWhite = rgb.r >= 240 && rgb.g >= 240 && rgb.b >= 240;
 
-            return false;
+            if (!isNaN(rgb.r) && !isNaN(rgb.g) && !isNaN(rgb.b) && !isWhite) {
+              colors.push(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+            }
           }
+        });
+
+        this.setState({
+          background: colors.length === 1 ? colors[0] : `linear-gradient(to right, ${colors.join(', ')})`
         });
       });
   }

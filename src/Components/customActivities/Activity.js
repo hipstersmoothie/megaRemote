@@ -54,17 +54,15 @@ class Activity extends Component {
   render() {
     const isCurrent = this.props.current === this.props.name;
     let backgroundColor = isCurrent || this.props.showColor ? this.state.backgroundColor || this.props.color || 'rgb(255,204,0)' : 'rgb(188, 188, 188)';
+
     if (this.props.disabled) {
       backgroundColor = 'rgba(211, 211, 211, 0.31)';
     }
 
     return (
-      <div
-        className="Activity"
-        style={_.extend({}, ActivityStyle, { backgroundColor }, isCurrent ? SelectedActivityStyle : {})}
-        onClick={this.onClick.bind(this)}
-      >
-        <Avatar src={this.props.icon} style={_.extend({}, AvatarStyle, !this.props.current || (isCurrent ? SelectedAvatarStyle : {display:'none'}))} />
+      <div className="Activity" style={_.extend({}, ActivityStyle, this.state.background ? { background: this.state.background } : { backgroundColor }, isCurrent ? SelectedActivityStyle : {})} onClick={this.onClick.bind(this)}>
+        <Avatar src={this.props.icon} style={_.extend({}, AvatarStyle, !this.props.current || (isCurrent ? SelectedAvatarStyle : { display: 'none' }))} />
+
         {isCurrent && [
           <h2 key="title" style={isCurrent ? { width: '100%' } : {}}>{this.props.name}</h2>,
           <img key="exit" src="images/x.svg" style={SelectedImageStyle} onClick={this.props.deselect} alt="Deselect" />

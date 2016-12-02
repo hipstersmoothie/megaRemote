@@ -82,7 +82,7 @@ class ActivityGroup extends Component {
         >
           <div style={{ display: 'table-row' }}>
             <div style={AvatarWrapper}>
-              <img role="presentation" src={this.props.icon} style={{ height: '50px' }}/>
+              <img role="presentation" src={this.props.icon} style={{ height: '50px', verticalAlign: 'middle' }}/>
             </div>
 
 
