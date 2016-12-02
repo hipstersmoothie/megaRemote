@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import command from './../command';
+import ServerURL from './../Server';
 
 class APIButton extends Component {
   onClick() {
@@ -9,7 +10,7 @@ class APIButton extends Component {
     }
 
     if (this.props.type) {
-      command(`http://192.168.0.4:5000/${this.props.type}${this.props.target ? `/${this.props.target.replace('/', '%2f')}` : ''}/${this.props.command}`);
+      command(`http://${ServerURL()}/${this.props.type}${this.props.target ? `/${this.props.target.replace('/', '%2f')}` : ''}/${this.props.command}`);
     }
   }
 

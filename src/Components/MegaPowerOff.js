@@ -2,9 +2,10 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import command from './../command';
+import ServerURL from './../Server';
 
 const MegaPowerOff = props => (
-  <RaisedButton primary onClick={() => command(`http://192.168.0.4:5000/allOff/${props.secondary}`)}>
+  <RaisedButton primary onClick={() => command(`http://${ServerURL()}/allOff/${props.secondary}`)}>
     All Off
   </RaisedButton>
 );

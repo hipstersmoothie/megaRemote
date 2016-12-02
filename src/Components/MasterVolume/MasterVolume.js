@@ -6,11 +6,13 @@ import makeClass from 'classnames';
 import Slider from 'material-ui/Slider';
 
 import './MasterVolume.css';
+import ServerURL from './../../Server';
 
 class MasterVolume extends Component {
   constructor(props) {
     super(props);
 
+    this.serverUrl = ServerURL();
     this.state = {
       volume: 0
     };
@@ -27,7 +29,7 @@ class MasterVolume extends Component {
 
   getVolume() {
     request
-    .get('http://192.168.0.4:5000/volume/')
+    .get(`http://${this.serverUrl}/volume/`)
     .end((err, res) => {
       this.setState({ volume: JSON.parse(res.text).volume });
     });
@@ -35,7 +37,7 @@ class MasterVolume extends Component {
 
   changeVolume(event, volume) {
     request
-      .post(`http://192.168.0.4:5000/volume/${volume}`)
+      .post(`http://${this.serverUrl}/volume/${volume}`)
       .end(() => {});
   }
 

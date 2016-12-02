@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
+import Speaker from 'material-ui/svg-icons/hardware/speaker-group';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActivityGroup from './ActivityGroup';
 import SoundGroup from './SoundGroup';
@@ -9,6 +10,7 @@ import setSystem from './../../setSystem';
 import MasterVolume from './../MasterVolume/MasterVolume';
 import command from './../../command';
 import ServerUrl from './../../Server';
+import Scenes from './../MegaSwitcher/Lights';
 
 const VideoSources = [
   {
@@ -158,6 +160,7 @@ class CustomActivities extends Component {
 
   setSystem() {
     const extraCommands = _.find(VideoSources, source => (source.name === this.state.mainTvName || source.name === this.state.secondaryTvName) && source.commands) || {};
+    console.log('ev', this.state)
     setSystem(this.state, extraCommands.commands);
   }
 
@@ -176,6 +179,7 @@ class CustomActivities extends Component {
   }
 
   selectSound(event) {
+    console.log(event)
     this.setState({
       mainAudioName: event.selection,
       mainAudio: findSource(SoundSources, event)
@@ -192,8 +196,14 @@ class CustomActivities extends Component {
     return (
       <div className="CustomActivities" style={{marginBottom: '60px'}}>
         <MasterVolume />
-        <ActivityGroup activities={VideoSources} title="Main TV" onClick={this.selectMain.bind(this)} />
         <ActivityGroup
+          icon="/images/tv.svg"
+          activities={VideoSources}
+          title="Main TV"
+          onClick={this.selectMain.bind(this)}
+        />
+        <ActivityGroup
+          icon="/images/tv2.svg"
           activities={VideoSources}
           title="Secondary TV"
           onClick={this.selectSecondary.bind(this)}
@@ -207,6 +217,7 @@ class CustomActivities extends Component {
           </div>}
         />
         <SoundGroup
+          icon="/images/speaker.svg"
           videoSources={VideoSources}
           soundSources={SoundSources}
           title="Sound"
@@ -216,6 +227,9 @@ class CustomActivities extends Component {
             Mode
           </RaisedButton>}
         />
+
+        <Scenes onChange={(scene) => { console.log('here', scene);this.setState({ scene })}  }/>
+
 
         <div className="TurnOnSecondTv-buttons" style={{ marginTop: '20px' }}>
           <RaisedButton onClick={this.setSystem.bind(this)}>

@@ -14,9 +14,9 @@ const SelectedActivityStyle = {
   position: 'absolute',
   left: 0,
   top: 0,
+  borderRadius: 0,
   width: '100%',
   height: '100%',
-  borderRadius: '10px',
   margin: 0,
   alignItems: 'center'
 };
@@ -55,15 +55,15 @@ class Activity extends Component {
 
   render() {
     const isCurrent = this.props.current === this.props.name;
-    let backgroundColor = isCurrent ? this.props.color : 'rgb(188, 188, 188)';
-
+    let backgroundColor = isCurrent ? this.props.color || 'rgb(255,204,0)' : 'rgb(188, 188, 188)';
+    console.log('ren', this.props.current)
     if (this.props.disabled) {
       backgroundColor = 'rgba(211, 211, 211, 0.31)';
     }
 
     return (
       <div className="Activity" style={_.extend({}, ActivityStyle, { backgroundColor }, isCurrent ? SelectedActivityStyle : {})} onClick={this.onClick.bind(this)}>
-        <Avatar src={this.props.icon} style={_.extend({}, AvatarStyle, isCurrent ? SelectedAvatarStyle : {})} />
+        <Avatar src={this.props.icon} style={_.extend({}, AvatarStyle, !this.props.current || (isCurrent ? SelectedAvatarStyle : {display:'none'}))} />
 
         {isCurrent && [
           <h2 key="title" style={isCurrent ? { width: '100%' } : {}}>{this.props.name}</h2>,

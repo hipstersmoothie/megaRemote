@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
+import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
 import './ActivityGroup.css';
 import Activity from './Activity';
-
-const ActivityWrapper = {
-  position: 'relative',
-  overflow: 'hidden'
-};
 
 class ActivityGroup extends Component {
   constructor(props) {
@@ -27,7 +23,10 @@ class ActivityGroup extends Component {
   }
 
   onClick(selection) {
+
     if (this.state.selection !== selection) {
+                    console.log('click')
+
       this.setState({
         selection
       });
@@ -56,24 +55,50 @@ class ActivityGroup extends Component {
   }
 
   render() {
+    const ActivityWrapper = {
+      position: 'relative',
+      overflow: 'hidden',
+      display: 'table-cell'
+    };
+
+    const AvatarWrapper = {
+      height: '100%',
+      width: '80px',
+      display: 'table-cell',
+      verticalAlign: 'middle',
+      backgroundColor: 'rgb(188, 188, 188)',
+    };
+
     return (
       <div className="ActivityGroup">
-        <Paper zDepth={2} style={{ position: 'relative', margin: '10px 20px', padding: '10px 20px 30px' }}>
-          <h4>{this.props.title}</h4>
+        <Paper
+          zDepth={2}
+          style={{
+            position: 'relative',
+            margin: '10px 0px',
+            display: 'table',
+            width: '100%'
+          }}
+        >
+          <div style={{ display: 'table-row' }}>
+            <div style={AvatarWrapper}>
+              <img role="presentation" src={this.props.icon} style={{ height: '50px' }}/>
+            </div>
 
-          {this.props.control}
 
-          <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
-            {_.map(this.activities || this.props.activities, source =>
-              <Activity
-                {...source}
-                key={source.name}
-                deselect={this.deselect.bind(this)}
-                onClick={this.onClick.bind(this)}
-                current={this.selection || this.state.selection}
-                disabled={this.isDisabled(this.props, source)}
-              />
-            )}
+
+            <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
+              {_.map(this.activities || this.props.activities, source =>
+                <Activity
+                  {...source}
+                  key={source.name}
+                  deselect={this.deselect.bind(this)}
+                  onClick={this.onClick.bind(this)}
+                  current={this.selection || this.state.selection}
+                  disabled={this.isDisabled(this.props, source)}
+                />
+              )}
+            </div>
           </div>
         </Paper>
       </div>
