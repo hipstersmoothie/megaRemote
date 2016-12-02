@@ -40,13 +40,6 @@ const SelectedImageStyle = {
 };
 
 class Activity extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      backgroundColor: 'rgb(188, 188, 188)'
-    };
-  }
-
   onClick() {
     if (!this.props.disabled) {
       this.props.onClick(this.props.name);
@@ -54,12 +47,13 @@ class Activity extends Component {
   }
 
   render() {
+    console.log(this.props)
     const isCurrent = this.props.current === this.props.name;
-    let backgroundColor = isCurrent ? this.props.color || 'rgb(255,204,0)' : 'rgb(188, 188, 188)';
-    console.log('ren', this.props.current)
+    let backgroundColor = isCurrent || this.props.showColor ? this.state.backgroundColor || this.props.color || 'rgb(255,204,0)' : 'rgb(188, 188, 188)';
     if (this.props.disabled) {
       backgroundColor = 'rgba(211, 211, 211, 0.31)';
     }
+    console.log(backgroundColor)
 
     return (
       <div className="Activity" style={_.extend({}, ActivityStyle, { backgroundColor }, isCurrent ? SelectedActivityStyle : {})} onClick={this.onClick.bind(this)}>

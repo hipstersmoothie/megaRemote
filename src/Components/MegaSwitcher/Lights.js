@@ -3,7 +3,7 @@ import _ from 'lodash';
 import request from 'superagent';
 
 import ActivityGroup from './../customActivities/ActivityGroup';
-
+import LightActivity from './LightActivity';
 import ServerURL from './../../Server';
 
 class Scenes extends Component {
@@ -17,20 +17,16 @@ class Scenes extends Component {
   }
 
   componentWillMount() {
-    console.log('here')
     request
       .get(`http://${this.serverURL}/scenes/`)
       .end((err, res) => {
-            console.log('there', err, res)
-
+        console.log(JSON.parse(res.text))
         this.setState({ scenes: JSON.parse(res.text) });
       });
   }
 
   onChange(scene) {
-    const found = _.find(this.state.scenes, (stateScene) => {
-      return scene.selection === stateScene.name;
-    }) || {};
+    const found = _.find(this.state.scenes, stateScene => scene.selection === stateScene.name) || {};
 
     this.setState({ scene: scene.selection });
     this.props.onChange(found.id);
@@ -43,6 +39,8 @@ class Scenes extends Component {
         activities={this.state.scenes}
         title="Lights"
         onClick={this.onChange.bind(this)}
+        activityAsset={LightActivity}
+        showColor
       />
     );
   }

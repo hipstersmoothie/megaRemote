@@ -23,13 +23,11 @@ class ActivityGroup extends Component {
   }
 
   onClick(selection) {
-
     if (this.state.selection !== selection) {
-                    console.log('click')
-
       this.setState({
         selection
       });
+
       this.props.onClick({ selection });
     }
   }
@@ -55,6 +53,8 @@ class ActivityGroup extends Component {
   }
 
   render() {
+    const ActivityComponent = this.props.activityAsset || Activity;
+
     const ActivityWrapper = {
       position: 'relative',
       overflow: 'hidden',
@@ -89,13 +89,14 @@ class ActivityGroup extends Component {
 
             <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
               {_.map(this.activities || this.props.activities, source =>
-                <Activity
+                <ActivityComponent
                   {...source}
                   key={source.name}
                   deselect={this.deselect.bind(this)}
                   onClick={this.onClick.bind(this)}
                   current={this.selection || this.state.selection}
                   disabled={this.isDisabled(this.props, source)}
+                  showColor={this.props.showColor}
                 />
               )}
             </div>
@@ -111,7 +112,8 @@ ActivityGroup.propTypes = {
   currentMainTv: React.PropTypes.string,
   activities: React.PropTypes.array,
   onClick: React.PropTypes.func,
-  control: React.PropTypes.object
+  control: React.PropTypes.object,
+  activityAsset: React.PropTypes.func
 };
 
 export default ActivityGroup;
