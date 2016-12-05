@@ -10,3 +10,35 @@
 .ActiveSoundWrapper:active {
   background-color: lightblue !important;
 }
+
+.ActivityWrapper {
+  position: relative;
+  overflow: hidden;
+  display: table-cell;
+}
+
+.ActivityPaper {
+  position: relative;
+  margin: 10px 0px;
+  display: table;
+  width: 100%;
+}
+
+.AvatarImage {
+   height: 50px;
+   vertical-align: middle;
+}
+
+.SelectedActivity {
+  height: 70px;
+  width: 300px;
+  margin: auto;
+}
+
+.AvatarWrapper {
+  height: 100%;
+  width: 80px;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: rgb(188, 188, 188);
+}

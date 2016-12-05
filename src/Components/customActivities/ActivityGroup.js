@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import makeClass from 'classnames';
 
 import Paper from 'material-ui/Paper';
 import './ActivityGroup.css';
@@ -54,38 +55,24 @@ class ActivityGroup extends Component {
 
   render() {
     const ActivityComponent = this.props.activityAsset || Activity;
-
-    const ActivityWrapper = {
-      position: 'relative',
-      overflow: 'hidden',
-      display: 'table-cell'
-    };
-
-    const AvatarWrapper = {
-      height: '100%',
-      width: '80px',
-      display: 'table-cell',
-      verticalAlign: 'middle',
-      backgroundColor: 'rgb(188, 188, 188)',
-    };
+    const ActivityWrapper = makeClass({
+      ActivityWrapper: true,
+      SelectedActivity: this.state.selection
+    });
+    const AvatarWrapper = makeClass(
+      'ActivityWrapper',
+      this.props.className
+    );
 
     return (
       <div className="ActivityGroup">
-        <Paper
-          zDepth={2}
-          style={{
-            position: 'relative',
-            margin: '10px 0px',
-            display: 'table',
-            width: '100%'
-          }}
-        >
-          <div style={{ display: 'table-row' }}>
-            <div className={this.props.className} style={AvatarWrapper} onClick={this.props.control} >
-              <img role="presentation" src={this.props.icon} style={{ height: '50px', verticalAlign: 'middle' }} />
+        <Paper zDepth={2} className="ActivityPaper">
+          <div>
+            <div className={AvatarWrapper} onClick={this.props.control} >
+              <img className="AvaterImage" role="presentation" src={this.props.icon} />
             </div>
 
-            <div style={_.extend({}, ActivityWrapper, this.state.selection ? { height: 70, width: 300, margin: 'auto' } : {})}>
+            <div className={ActivityWrapper}>
               {_.map(this.activities || this.props.activities, source =>
                 <ActivityComponent
                   {...source}
