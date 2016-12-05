@@ -59,17 +59,29 @@ class ActivityGroup extends Component {
       ActivityWrapper: true,
       SelectedActivity: this.state.selection
     });
-    const AvatarWrapper = makeClass(
-      'ActivityWrapper',
-      this.props.className
-    );
+
+    const AvatarWrapper = {
+      height: '100%',
+      width: '80px',
+      display: 'table-cell',
+      verticalAlign: 'middle',
+      backgroundColor: 'rgb(188, 188, 188)',
+    };
 
     return (
       <div className="ActivityGroup">
-        <Paper zDepth={2} className="ActivityPaper">
-          <div>
-            <div className={AvatarWrapper} onClick={this.props.control} >
-              <img className="AvaterImage" role="presentation" src={this.props.icon} />
+        <Paper
+          zDepth={2}
+          style={{
+            position: 'relative',
+            margin: '10px 0px',
+            display: 'table',
+            width: '100%'
+          }}
+        >
+          <div style={{ display: 'table-row' }}>
+            <div className={this.props.className} style={AvatarWrapper} onClick={this.props.control} >
+              <img role="presentation" src={this.props.icon} style={{ height: '50px', verticalAlign: 'middle' }} />
             </div>
 
             <div className={ActivityWrapper}>

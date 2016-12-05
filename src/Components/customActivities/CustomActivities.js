@@ -192,7 +192,7 @@ class CustomActivities extends Component {
 
   render() {
     return (
-      <div className="CustomActivities" style={{ marginBottom: '60px' }}>
+      <div className="CustomActivities" style={{ paddingBottom: '60px' }}>
         <MasterVolume />
         <ActivityGroup
           icon="/images/tv.svg"
