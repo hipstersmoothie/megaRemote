@@ -56,6 +56,11 @@ export default function setSystem(inputs, extraCommands) {
   // Set Audio
   if (inputs.mainTv !== inputs.mainAudio && inputs.mainAudio) {
     if (inputs.mainAudio === 'InputBluetooth' || inputs.mainAudio === 'InputAirplay') {
+      if (inputs.mainAudio === 'InputAirplay') {
+        command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver/InputNet`);
+        command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver/Enter`);
+      }
+
       command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver/${inputs.mainAudio}`);
 
       setTimeout(() => {

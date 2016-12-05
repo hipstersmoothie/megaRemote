@@ -109,7 +109,7 @@ ActivityGroup.propTypes = {
   icon: React.PropTypes.string,
   activities: React.PropTypes.array,
   onClick: React.PropTypes.func,
-  control: React.PropTypes.object, // eslint-disable-line react/no-unused-prop-types
+  control: React.PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   activityAsset: React.PropTypes.func
 };
 
