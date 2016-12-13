@@ -5,11 +5,9 @@ import { Link } from 'react-router';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-import GameIcon from 'material-ui/svg-icons/hardware/videogame-asset';
 import TV from 'material-ui/svg-icons/hardware/tv';
 
 const recentsIcon = <FontIcon className="fa fa-bolt" />;
-const favoritesIcon = <GameIcon />;
 const nearbyIcon = <IconLocationOn />;
 const tvIcon = <TV />;
 
@@ -23,12 +21,10 @@ function BottomNav(props) {
 
   if (props.location && props.location.includes('quick')) {
     selected = 0;
-  } else if (props.location && props.location.includes('activities')) {
-    selected = 1;
   } else if (props.location && props.location.includes('devices')) {
-    selected = 2;
+    selected = 1;
   } else if (props.location && props.location.includes('tv')) {
-    selected = 3;
+    selected = 2;
   }
 
   return (
@@ -38,11 +34,6 @@ function BottomNav(props) {
           label="Quick"
           icon={recentsIcon}
           containerElement={<Link to="/quick" />}
-        />
-        <BottomNavigationItem
-          label="Activities"
-          icon={favoritesIcon}
-          containerElement={<Link to="/activities" />}
         />
         <BottomNavigationItem
           label="Devices"

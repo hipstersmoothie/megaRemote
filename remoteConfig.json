@@ -1,4 +1,4 @@
 {
-  "serverIpAddress": "192.168.1.15",
+  "serverIpAddress": "localhost",
   "serverPort": "5000"
 }
