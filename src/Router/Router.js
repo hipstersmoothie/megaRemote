@@ -9,7 +9,7 @@ function Devices() {
   return <Section route="Devices" />;
 }
 
-function tvShows() {
+function media() {
   return (
     <iframe src="http://192.168.1.24:32400/web/index.html" />
   );
@@ -20,7 +20,7 @@ const AppRouter = () => (
     <Redirect from="/" to="quick" />
     <Route path="/" component={Root}>
       <Route path="quick" component={CustomActivities} />
-      <Route path="tvShows" component={tvShows} />
+      <Route path="media" component={media} />
       <Route path="devices" component={Devices} />
     </Route>
   </Router>

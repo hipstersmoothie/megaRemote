@@ -41,9 +41,9 @@ function BottomNav(props) {
           containerElement={<Link to="/devices" />}
         />
         <BottomNavigationItem
-          label="TV Shows"
+          label="Media"
           icon={tvIcon}
-          containerElement={<Link to="/tvShows" />}
+          containerElement={<Link to="/media" />}
         />
       </BottomNavigation>
     </Paper>
