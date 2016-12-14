@@ -47,7 +47,7 @@ class Activity extends Component {
 
   onClick() {
     if (!this.props.disabled) {
-      this.props.onClick(this.props.name);
+      this.props.onClick(this.props);
     }
   }
 

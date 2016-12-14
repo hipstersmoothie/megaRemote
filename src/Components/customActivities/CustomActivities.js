@@ -15,12 +15,14 @@ import './../MegaSwitcher/MegaSwitcher.css';
 const VideoSources = [
   {
     name: 'PS4',
+    inputName: 'Sony PS4',
     input: 'InputGame1',
     icon: 'images/playstation.svg',
     color: '#003791'
   },
   {
     name: 'Xbox One',
+    inputName: 'Microsoft Xbox One',
     isXboxActivity: true,
     input: 'InputGame2',
     icon: 'images/xbox.svg',
@@ -34,6 +36,7 @@ const VideoSources = [
   },
   {
     name: 'Apple TV',
+    inputName: 'Apple TV Gen 2/3',
     isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/apple.svg',
@@ -41,6 +44,7 @@ const VideoSources = [
   },
   {
     name: 'Netflix',
+    inputName: 'Apple TV Gen 2/3',
     isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/netflix.svg',
@@ -58,6 +62,7 @@ const VideoSources = [
   },
   {
     name: 'HBO',
+    inputName: 'Apple TV Gen 2/3',
     isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/HBO Go.svg',
@@ -74,6 +79,7 @@ const VideoSources = [
   },
   {
     name: 'Showtime',
+    inputName: 'Apple TV Gen 2/3',
     isSmartActivity: true,
     input: 'InputStrmBox',
     icon: 'images/SHO.svg',
@@ -92,6 +98,7 @@ const VideoSources = [
   },
   {
     name: 'Plex',
+    inputName: 'Microsoft Xbox One',
     isXboxActivity: true,
     input: 'InputGame2',
     icon: 'images/plex.svg',

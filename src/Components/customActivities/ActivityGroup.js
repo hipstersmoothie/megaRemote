@@ -6,6 +6,49 @@ import Paper from 'material-ui/Paper';
 import './ActivityGroup.css';
 import Activity from './Activity';
 
+import Select from './../../Controller/Select';
+import Navigation from './../../Controller/Navigation';
+import ServerURL from './../../Server';
+import request from 'superagent';
+
+class MiniControls extends Component {
+  constructor(props) {
+    super(props);
+
+    this.serverURL = ServerURL();
+    this.state = { controls: [] };
+  }
+
+  getControls(target) {
+    request
+      .get(`http://${this.serverURL}/devices/${target.replace('/', '%2f')}`)
+      .end((err, res) => {
+        this.setState({
+          controls: JSON.parse(res.text)
+        });
+      });
+  }
+
+  componentWillReceiveProps(props) {
+    if (this.props.target !== props.target && props.target !== undefined) {
+      this.getControls(props.target);
+    }
+  }
+
+  render() {
+    if (this.props.target && this.props.show) {
+      return (
+        <div className="ActivityMiniControl">
+          <Select type="device" target={this.props.target} controls={this.state.controls} />
+          <Navigation type="device" target={this.props.target} controls={this.state.controls} />
+        </div>
+      );
+    }
+
+    return null;
+  }
+}
+
 class ActivityGroup extends Component {
   constructor(props) {
     super(props);
@@ -23,12 +66,15 @@ class ActivityGroup extends Component {
   }
 
   onClick(selection) {
-    if (this.state.selection !== selection) {
+    if (this.state.selection !== selection.name) {
       this.setState({
-        selection
+        selection: selection.name,
+        inputName: selection.inputName
       });
 
-      this.props.onClick({ selection });
+      this.props.onClick({ selection: selection.name });
+    } else {
+      this.setState({ showControls: !this.state.showControls });
     }
   }
 
@@ -36,7 +82,9 @@ class ActivityGroup extends Component {
     ev.stopPropagation();
     this.setState({
       selection: undefined,
-      userInteracted: true
+      inputName: undefined,
+      userInteracted: true,
+      showControls: false
     });
     this.props.onClick({ selection: undefined });
   }
@@ -98,6 +146,7 @@ class ActivityGroup extends Component {
             </div>
           </div>
         </Paper>
+        <MiniControls target={this.state.inputName} show={this.state.showControls} />
       </div>
     );
   }
