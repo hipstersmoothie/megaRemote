@@ -40,8 +40,8 @@ class MiniControls extends Component {
     if (this.props.target && this.props.show) {
       return (
         <div className="ActivityMiniControl">
-          <Select type="device" target={this.props.target} controls={this.state.controls} />
-          <Navigation type="device" target={this.props.target} controls={this.state.controls} />
+          <Select type="devices" target={this.props.target} controls={this.state.controls} />
+          <Navigation type="devices" target={this.props.target} controls={this.state.controls} />
         </div>
       );
     }
