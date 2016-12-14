@@ -10,6 +10,7 @@ import MasterVolume from './../MasterVolume/MasterVolume';
 import command from './../../command';
 import ServerUrl from './../../Server';
 import Scenes from './../MegaSwitcher/Lights';
+import './../MegaSwitcher/MegaSwitcher.css';
 
 const VideoSources = [
   {
