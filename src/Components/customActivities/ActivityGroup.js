@@ -5,56 +5,12 @@ import makeClass from 'classnames';
 import Paper from 'material-ui/Paper';
 import './ActivityGroup.css';
 import Activity from './Activity';
-
-import Select from './../../Controller/Select';
-import Navigation from './../../Controller/Navigation';
-import ServerURL from './../../Server';
-import request from 'superagent';
-
-class MiniControls extends Component {
-  constructor(props) {
-    super(props);
-
-    this.serverURL = ServerURL();
-    this.state = { controls: [] };
-  }
-
-  getControls(target) {
-    request
-      .get(`http://${this.serverURL}/devices/${target.replace('/', '%2f')}`)
-      .end((err, res) => {
-        this.setState({
-          controls: JSON.parse(res.text)
-        });
-      });
-  }
-
-  componentWillReceiveProps(props) {
-    if (this.props.target !== props.target && props.target !== undefined) {
-      this.getControls(props.target);
-    }
-  }
-
-  render() {
-    if (this.props.target && this.props.show) {
-      return (
-        <div className="ActivityMiniControl">
-          <Select type="device" target={this.props.target} controls={this.state.controls} />
-          <Navigation type="device" target={this.props.target} controls={this.state.controls} />
-        </div>
-      );
-    }
-
-    return null;
-  }
-}
+import MiniControls from './MiniControls';
 
 class ActivityGroup extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selection: undefined
-    };
+    this.state = { };
   }
 
   componentWillReceiveProps(props) {
