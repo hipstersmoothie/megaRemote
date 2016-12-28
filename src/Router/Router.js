@@ -11,7 +11,19 @@ function Devices() {
 
 function media() {
   return (
-    <iframe src="http://192.168.1.24:32400/web/index.html" />
+    <iframe src="http://192.168.1.31:32400/web/index.html" />
+  );
+}
+
+function AddMovies() {
+  return (
+    <iframe src="http://192.168.1.31:5050/movies/" />
+  );
+}
+
+function AddTv() {
+  return (
+    <iframe src="http://192.168.1.31:8989/" />
   );
 }
 
@@ -22,6 +34,8 @@ const AppRouter = () => (
       <Route path="quick" component={CustomActivities} />
       <Route path="media" component={media} />
       <Route path="devices" component={Devices} />
+      <Route path="addMovies" component={AddMovies} />
+      <Route path="addTv" component={AddTv} />
     </Route>
   </Router>
 );

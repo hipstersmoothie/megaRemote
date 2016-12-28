@@ -6,10 +6,14 @@ import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNaviga
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import TV from 'material-ui/svg-icons/hardware/tv';
+import Movie from 'material-ui/svg-icons/maps/local-movies';
+import Media from 'material-ui/svg-icons/notification/live-tv';
 
 const recentsIcon = <FontIcon className="fa fa-bolt" />;
 const nearbyIcon = <IconLocationOn />;
 const tvIcon = <TV />;
+const movieIcon = <Movie />;
+const mediaIcon = <Media />;
 
 /**
  * A simple example of `BottomNavigation`, with three labels and icons
@@ -23,8 +27,12 @@ function BottomNav(props) {
     selected = 0;
   } else if (props.location && props.location.includes('devices')) {
     selected = 1;
-  } else if (props.location && props.location.includes('tv')) {
+  } else if (props.location && props.location.includes('media')) {
     selected = 2;
+  } else if (props.location && props.location.includes('addMovie')) {
+    selected = 3;
+  } else if (props.location && props.location.includes('addTv')) {
+    selected = 4;
   }
 
   return (
@@ -42,8 +50,18 @@ function BottomNav(props) {
         />
         <BottomNavigationItem
           label="Media"
-          icon={tvIcon}
+          icon={mediaIcon}
           containerElement={<Link to="/media" />}
+        />
+        <BottomNavigationItem
+          label="+Movies"
+          icon={movieIcon}
+          containerElement={<Link to="/addMovies" />}
+        />
+        <BottomNavigationItem
+          label="+TV"
+          icon={tvIcon}
+          containerElement={<Link to="/addTv" />}
         />
       </BottomNavigation>
     </Paper>
