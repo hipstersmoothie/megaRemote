@@ -11,7 +11,7 @@ function Devices() {
 
 function media() {
   return (
-    <iframe src="http://192.168.1.31:32400/web/index.html" />
+    <iframe allowFullScreen width="100%" height="100%" src="http://192.168.1.31:32400/web/index.html" />
   );
 }
 
