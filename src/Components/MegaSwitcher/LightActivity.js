@@ -43,6 +43,61 @@ function xyBriToRgb(x, y, bri) {
   };
 }
 
+// Convert a decimal value between 0 and 1 to an integer 0-255
+function colorNormalizedToEightBit(value) {
+  return Math.round(value * 255);
+}
+
+/* accepts parameters
+ * h  Object = {h:x, s:y, v:z}
+ * OR
+ * h, s, v
+*/
+function HSVtoRGB(hue, sat, value) {
+  const satNormal = sat / 255;
+  const valueNormal = value / 255;
+  const hueNormal = (hue / 65535) * 360;
+  const c = valueNormal * satNormal;
+  const x = c * (1 - Math.abs(((hueNormal / 60) % 2) - 1));
+  const m = valueNormal - c;
+
+  let red = 0;
+  let green = 0;
+  let blue = 0;
+
+  if ((hueNormal >= 0) && (hueNormal < 60)) {
+    red = c;
+    green = x;
+    blue = 0;
+  } else if ((hueNormal >= 60) && (hueNormal < 120)) {
+    red = x;
+    green = c;
+    blue = 0;
+  } else if ((hueNormal >= 120) && (hueNormal < 180)) {
+    red = 0;
+    green = c;
+    blue = x;
+  } else if ((hueNormal >= 180) && (hueNormal < 240)) {
+    red = 0;
+    green = x;
+    blue = c;
+  } else if ((hueNormal >= 240) && (hueNormal < 300)) {
+    red = x;
+    green = 0;
+    blue = c;
+  } else {
+    red = c;
+    green = 0;
+    blue = x;
+  }
+
+  return {
+    r: colorNormalizedToEightBit(red + m),
+    g: colorNormalizedToEightBit(green + m),
+    b: colorNormalizedToEightBit(blue + m)
+  };
+}
+
 class LightActivity extends Activity {
   constructor(props) {
     super(props);
@@ -54,18 +109,25 @@ class LightActivity extends Activity {
         const colors = [];
 
         _.forIn(lightStates, (state) => {
-          if (state.xy) {
-            const rgb = xyBriToRgb(state.xy[0], state.xy[1], state.bri);
-            const isWhite = rgb.r >= 240 && rgb.g >= 240 && rgb.b >= 240;
+          let rgb;
 
-            if (!isNaN(rgb.r) && !isNaN(rgb.g) && !isNaN(rgb.b) && !isWhite) {
-              colors.push(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
-            }
+          if (state.xy) {
+            rgb = xyBriToRgb(state.xy[0], state.xy[1], state.bri);
+          } else if (state.hue && state.sat) {
+            rgb = HSVtoRGB(state.hue, state.sat, 255);
+          }
+
+          const isWhite = rgb && rgb.r >= 240 && rgb.g >= 240 && rgb.b >= 240;
+
+          if (rgb && !isNaN(rgb.r) && !isNaN(rgb.g) && !isNaN(rgb.b) && !isWhite) {
+            colors.push(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
           }
         });
 
+        const allSame = _.reduce(colors, (equal, color) => (color === equal ? equal : false), colors[0]);
+
         this.setState({
-          background: colors.length === 1 ? colors[0] : `linear-gradient(to right, ${colors.join(', ')})`
+          background: colors.length === 1 || allSame ? colors[0] : `linear-gradient(to right, ${colors.join(', ')})`
         });
       });
   }
