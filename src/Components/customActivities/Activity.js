@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import makeClass from 'classnames';
 
 import Avatar from 'material-ui/Avatar';
 
@@ -61,10 +62,11 @@ class Activity extends Component {
 
     return (
       <div
-        className="Activity"
+        className={makeClass('Activity', { active: isCurrent })}
         style={_.extend({}, ActivityStyle, this.state.background ? { background: this.state.background } : { backgroundColor }, isCurrent ? SelectedActivityStyle : {})}
         onClick={this.onClick.bind(this)}
       >
+        <div className="OpacitySliderBlur" style={{ left: this.props.brightness > -1 && this.props.active ? `${this.props.brightness}%` : '100%' }} />
         <Avatar src={this.props.icon} style={_.extend({}, AvatarStyle, !this.props.current || (isCurrent ? SelectedAvatarStyle : { display: 'none' }))} />
 
         {isCurrent && [
@@ -83,7 +85,9 @@ Activity.propTypes = {
   name: React.PropTypes.string,
   color: React.PropTypes.string,
   current: React.PropTypes.string,
-  disabled: React.PropTypes.bool
+  disabled: React.PropTypes.bool,
+  brightness: React.PropTypes.number,
+  active: React.PropTypes.bool
 };
 
 export default Activity;

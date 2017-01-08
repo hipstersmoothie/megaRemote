@@ -95,6 +95,8 @@ class ActivityGroup extends Component {
                   key={source.name}
                   deselect={this.deselect.bind(this)}
                   onClick={this.onClick.bind(this)}
+                  brightness={this.props.brightness}
+                  active={this.props.active}
                   current={this.selection || this.state.selection}
                   disabled={this.isDisabled(this.props, source)}
                 />
@@ -114,7 +116,10 @@ ActivityGroup.propTypes = {
   activities: React.PropTypes.array,
   onClick: React.PropTypes.func,
   control: React.PropTypes.func, // eslint-disable-line react/no-unused-prop-types
-  activityAsset: React.PropTypes.func
+  activityAsset: React.PropTypes.func,
+  className: React.PropTypes.string,
+  brightness: React.PropTypes.number,
+  active: React.PropTypes.bool
 };
 
 export default ActivityGroup;

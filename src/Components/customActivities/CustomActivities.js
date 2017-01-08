@@ -228,10 +228,15 @@ class CustomActivities extends Component {
           className="ActiveSoundWrapper"
         />
 
-        <Scenes onChange={scene => this.setState({ scene })} />
+        <Scenes active={this.state.setActive} onChange={scene => this.setState({ scene, setActive: false })} />
 
         <div className="TurnOnSecondTv-buttons" style={{ marginTop: '20px' }}>
-          <RaisedButton onClick={this.setSystem.bind(this)}>
+          <RaisedButton
+            onClick={() => {
+              this.setSystem.bind(this)();
+              this.setState({ setActive: true });
+            }}
+          >
             Set!
           </RaisedButton>
           <MegaPowerOff secondary={this.state.turnOnSecondaryTv} />

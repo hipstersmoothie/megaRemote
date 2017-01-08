@@ -46,3 +46,11 @@
   vertical-align: middle;
   background-color: rgb(188, 188, 188);
 }
+
+.SelectedActivity .Activity.active .OpacitySliderBlur {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: white;
+  opacity: 0.4;
+}

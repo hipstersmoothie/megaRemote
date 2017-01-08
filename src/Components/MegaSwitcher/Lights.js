@@ -9,9 +9,10 @@ import ServerURL from './../../Server';
 class Scenes extends Component {
   constructor(props) {
     super(props);
+
     this.serverURL = ServerURL();
+    this.scene = 'None';
     this.state = {
-      scene: 'None',
       scenes: []
     };
   }
@@ -24,11 +25,29 @@ class Scenes extends Component {
       });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.active && this.scene) {
+      this.getBri();
+    } else {
+      this.setState({ brightness: null });
+    }
+  }
+
   onChange(scene) {
     const found = _.find(this.state.scenes, stateScene => scene.selection === stateScene.name) || {};
+    this.scene = scene.selection;
 
-    this.setState({ scene: scene.selection });
-    this.props.onChange(found.id);
+    if (found) {
+      this.props.onChange(found.id);
+    }
+  }
+
+  getBri() {
+    request
+      .get(`http://${this.serverURL}/brightness/`)
+      .end((err, res) => {
+        this.setState({ brightness: JSON.parse(res.text).bri });
+      });
   }
 
   render() {
@@ -39,6 +58,8 @@ class Scenes extends Component {
         title="Lights"
         onClick={this.onChange.bind(this)}
         activityAsset={LightActivity}
+        brightness={this.state.brightness}
+        active={this.props.active}
         showColor
       />
     );
@@ -46,7 +67,8 @@ class Scenes extends Component {
 }
 
 Scenes.propTypes = {
-  onChange: React.PropTypes.func
+  onChange: React.PropTypes.func,
+  active: React.PropTypes.bool
 };
 
 export default Scenes;
