@@ -50,18 +50,29 @@ class Scenes extends Component {
       });
   }
 
+  onAdjust(bri) {
+    request
+      .post(`http://${this.serverURL}/brightness/${bri}`)
+      .end(() => {
+        this.setState({ brightness: bri });
+      });
+  }
+
   render() {
     return (
-      <ActivityGroup
-        icon="/images/lightbulb.svg"
-        activities={this.state.scenes}
-        title="Lights"
-        onClick={this.onChange.bind(this)}
-        activityAsset={LightActivity}
-        brightness={this.state.brightness}
-        active={this.props.active}
-        showColor
-      />
+      <div className="Lights">
+        <ActivityGroup
+          icon="/images/lightbulb.svg"
+          activities={this.state.scenes}
+          title="Lights"
+          onClick={this.onChange.bind(this)}
+          activityAsset={LightActivity}
+          brightness={this.state.brightness}
+          active={this.props.active}
+          onAdjust={this.onAdjust.bind(this)}
+          showColor
+        />
+      </div>
     );
   }
 }

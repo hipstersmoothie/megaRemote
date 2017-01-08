@@ -52,6 +52,8 @@ class Activity extends Component {
     }
   }
 
+  onAdjust() {}
+
   render() {
     const isCurrent = this.props.current === this.props.name;
     let backgroundColor = isCurrent ? this.props.color : 'rgb(188, 188, 188)';
@@ -67,10 +69,12 @@ class Activity extends Component {
         onClick={this.onClick.bind(this)}
       >
         <div className="OpacitySliderBlur" style={{ left: this.props.brightness > -1 && this.props.active ? `${this.props.brightness}%` : '100%' }} />
+
         <Avatar src={this.props.icon} style={_.extend({}, AvatarStyle, !this.props.current || (isCurrent ? SelectedAvatarStyle : { display: 'none' }))} />
 
         {isCurrent && [
           <h2 key="title" style={isCurrent ? { width: '100%' } : {}}>{this.props.name}</h2>,
+          <input onChange={this.onAdjust} className="OpacitySlider" type="range" id="weight" min="0" max="100" step="1" value={this.props.brightness || ''} />,
           <img key="exit" src="images/x.svg" style={SelectedImageStyle} onClick={this.props.deselect} alt="Deselect" />
         ]}
       </div>

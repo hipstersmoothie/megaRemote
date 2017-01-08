@@ -101,6 +101,7 @@ function HSVtoRGB(hue, sat, value) {
 class LightActivity extends Activity {
   constructor(props) {
     super(props);
+    this.onAdjust = this.onAdjust.bind(this);
 
     request
       .get(`http://${ServerURL()}/scenes/${this.props.id}`)
@@ -130,6 +131,11 @@ class LightActivity extends Activity {
           background: colors.length === 1 || allSame ? colors[0] : `linear-gradient(to right, ${colors.join(', ')})`
         });
       });
+  }
+
+  onAdjust(ev) {
+    ev.persist();
+    this.props.onAdjust(ev.currentTarget.value);
   }
 
   render() {

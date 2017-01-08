@@ -10,6 +10,8 @@ import MiniControls from './MiniControls';
 class ActivityGroup extends Component {
   constructor(props) {
     super(props);
+
+    this.onAdjust = props.onAdjust ? props.onAdjust : () => {};
     this.state = { };
   }
 
@@ -95,6 +97,7 @@ class ActivityGroup extends Component {
                   key={source.name}
                   deselect={this.deselect.bind(this)}
                   onClick={this.onClick.bind(this)}
+                  onAdjust={this.onAdjust}
                   brightness={this.props.brightness}
                   active={this.props.active}
                   current={this.selection || this.state.selection}
