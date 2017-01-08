@@ -43,6 +43,13 @@ class Scenes extends Component {
     }
   }
 
+  onAdjust(bri) {
+    if (this.props.active) {
+      this.setState({ brightness: bri });
+      this.updateBri(bri);
+    }
+  }
+
   getBri() {
     request
       .get(`http://${this.serverURL}/brightness/`)
@@ -51,16 +58,10 @@ class Scenes extends Component {
       });
   }
 
-  onAdjust(bri) {
-    this.setState({ brightness: bri });
-    this.updateBri(bri);
-  }
-
   updateBri(bri) {
     request
       .post(`http://${this.serverURL}/brightness/${bri}`)
-      .end(() => { 
-      });
+      .end(() => { });
   }
 
   render() {
