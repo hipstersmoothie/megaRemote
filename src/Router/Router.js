@@ -11,19 +11,19 @@ function Devices() {
 
 function media() {
   return (
-    <iframe allowFullScreen width="100%" height="100%" src="http://plex.local:32400/web/index.html" />
+    <iframe allowFullScreen width="100%" height="100%" src="http://192.168.1.28:32400/web/index.html" />
   );
 }
 
 function AddMovies() {
   return (
-    <iframe src="http://downloader.local:5050/movies/" />
+    <iframe src="http://192.168.1.24:5050/movies/" />
   );
 }
 
 function AddTv() {
   return (
-    <iframe src="http://downloader.local:8989/" />
+    <iframe src="http://192.168.1.24:8989/" />
   );
 }
 
