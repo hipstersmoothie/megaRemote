@@ -133,9 +133,8 @@ class LightActivity extends Activity {
       });
   }
 
-  onAdjust(ev) {
-    ev.persist();
-    this.props.onAdjust(ev.currentTarget.value);
+  onAdjust(bri) {
+    this.props.onAdjust(bri.currentTarget.value);
   }
 
   render() {

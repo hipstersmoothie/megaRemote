@@ -15,6 +15,7 @@ class Scenes extends Component {
     this.state = {
       scenes: []
     };
+    this.updateBri = _.debounce(this.updateBri, 1000);
   }
 
   componentWillMount() {
@@ -51,10 +52,14 @@ class Scenes extends Component {
   }
 
   onAdjust(bri) {
+    this.setState({ brightness: bri });
+    this.updateBri(bri);
+  }
+
+  updateBri(bri) {
     request
       .post(`http://${this.serverURL}/brightness/${bri}`)
-      .end(() => {
-        this.setState({ brightness: bri });
+      .end(() => { 
       });
   }
 
