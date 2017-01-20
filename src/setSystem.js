@@ -9,7 +9,7 @@ export default function setSystem(inputs, extraCommands) {
 
   // Toggle Xbox because we can!
   if (inputs.mainTv === 'InputGame2' || inputs.secondaryTv === 'InputGame2') {
-    command(`http://${serverURL}/devices/Samsung%20TV/PowerOn`);
+    command(`http://${serverURL}/devices/Microsoft%20Xbox%20One/PowerOn`);
   }
 
   // Set Main TV
