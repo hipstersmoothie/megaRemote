@@ -1,0 +1,20 @@
+blockquote {
+  padding: 0 1em;
+  color: #777;
+  border-left: 0.25em solid #ddd;
+  text-align: left;
+}
+
+.TurnOnSecondTv {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+}
+
+.TurnOnSecondTv label {
+  margin-left: -10px;
+}
+
+.TurnOnSecondTv-buttons > * {
+  margin: 10px;
+}

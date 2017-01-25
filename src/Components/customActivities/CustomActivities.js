@@ -9,8 +9,8 @@ import setSystem from './../../setSystem';
 import MasterVolume from './../MasterVolume/MasterVolume';
 import command from './../../command';
 import ServerUrl from './../../Server';
-import Scenes from './../MegaSwitcher/Lights';
-import './../MegaSwitcher/MegaSwitcher.css';
+import Scenes from './../Lights/Lights';
+import './CustomActivities.css';
 
 const VideoSources = [
   {
@@ -239,7 +239,7 @@ class CustomActivities extends Component {
           >
             Set!
           </RaisedButton>
-          <MegaPowerOff secondary={this.state.turnOnSecondaryTv} />
+          <MegaPowerOff />
         </div>
       </div>
     );

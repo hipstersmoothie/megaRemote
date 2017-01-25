@@ -21,10 +21,7 @@ export default function setSystem(inputs, extraCommands) {
 
   // Set Secondary TV
   if (inputs.secondaryTv) {
-    if (inputs.turnOnSecondaryTv) {
-      command(`http://${serverURL}/devices/Vizio%20TV/PowerToggle`);
-    }
-
+    command(`http://${serverURL}/devices/Vizio%20TV/PowerOn`);
     command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/PowerOn`);
     command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver%20(2)/${inputs.secondaryTv}`);
   }
