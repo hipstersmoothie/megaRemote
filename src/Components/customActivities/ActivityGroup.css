@@ -11,6 +11,10 @@
   background-color: lightblue !important;
 }
 
+.MainWrapper:active {
+  background-color: #81C784 !important;
+}
+
 .ActivityWrapper {
   position: relative;
   overflow: hidden;

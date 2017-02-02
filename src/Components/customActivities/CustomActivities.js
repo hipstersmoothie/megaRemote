@@ -206,7 +206,9 @@ class CustomActivities extends Component {
           icon="/images/tv.svg"
           activities={VideoSources}
           title="Main TV"
+          control={() => command(`http://${ServerUrl()}/switch`)}
           onClick={this.selectMain.bind(this)}
+          className="MainWrapper"
         />
         <ActivityGroup
           icon="/images/tv2.svg"
