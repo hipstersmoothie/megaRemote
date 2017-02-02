@@ -12,10 +12,14 @@ export default function setSystem(inputs, extraCommands) {
     command(`http://${serverURL}/devices/Microsoft%20Xbox%20One/PowerOn`);
   }
 
+  if (inputs.mainTv === 'InputStrmBox' || inputs.secondaryTv === 'InputStrmBox') {
+    command(`http://${serverURL}/devices/Apple%20TV%20Gen%202%2f3/Menu`);
+  }
+
   // Set Main TV
   if (inputs.mainTv) {
-    command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver/PowerOn`);
     command(`http://${serverURL}/devices/Samsung%20TV/PowerOn`);
+    command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver/PowerOn`);
     command(`http://${serverURL}/devices/Onkyo%20AV%20Receiver/${inputs.mainTv}`);
   }
 
